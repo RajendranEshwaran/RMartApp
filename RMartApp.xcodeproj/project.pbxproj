@@ -14,6 +14,15 @@
 		97144F39259A784C009AAB73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97144F38259A784C009AAB73 /* Assets.xcassets */; };
 		97144F3C259A784C009AAB73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97144F3B259A784C009AAB73 /* Preview Assets.xcassets */; };
 		97144F3F259A784C009AAB73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97144F3D259A784C009AAB73 /* LaunchScreen.storyboard */; };
+		97144F51259A78C3009AAB73 /* UserSlideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F49259A78C2009AAB73 /* UserSlideMenuView.swift */; };
+		97144F52259A78C3009AAB73 /* AccessorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F4A259A78C3009AAB73 /* AccessorView.swift */; };
+		97144F53259A78C3009AAB73 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F4B259A78C3009AAB73 /* MenuView.swift */; };
+		97144F55259A78C3009AAB73 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F4D259A78C3009AAB73 /* ProfileView.swift */; };
+		97144F56259A78C3009AAB73 /* HomeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F4E259A78C3009AAB73 /* HomeContentView.swift */; };
+		97144F57259A78C3009AAB73 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F4F259A78C3009AAB73 /* HeaderView.swift */; };
+		97144F58259A78C3009AAB73 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F50259A78C3009AAB73 /* HomeView.swift */; };
+		97144F5D259A78CE009AAB73 /* Toggles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F5B259A78CE009AAB73 /* Toggles.swift */; };
+		97144F5E259A78CE009AAB73 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F5C259A78CE009AAB73 /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +35,15 @@
 		97144F3B259A784C009AAB73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		97144F3E259A784C009AAB73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97144F40259A784C009AAB73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97144F49259A78C2009AAB73 /* UserSlideMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSlideMenuView.swift; sourceTree = "<group>"; };
+		97144F4A259A78C3009AAB73 /* AccessorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessorView.swift; sourceTree = "<group>"; };
+		97144F4B259A78C3009AAB73 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		97144F4D259A78C3009AAB73 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		97144F4E259A78C3009AAB73 /* HomeContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentView.swift; sourceTree = "<group>"; };
+		97144F4F259A78C3009AAB73 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		97144F50259A78C3009AAB73 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		97144F5B259A78CE009AAB73 /* Toggles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toggles.swift; sourceTree = "<group>"; };
+		97144F5C259A78CE009AAB73 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,8 @@
 		97144F2E259A784A009AAB73 /* RMartApp */ = {
 			isa = PBXGroup;
 			children = (
+				97144F48259A7880009AAB73 /* Intermediate */,
+				97144F47259A7879009AAB73 /* Views */,
 				97144F2F259A784A009AAB73 /* AppDelegate.swift */,
 				97144F31259A784A009AAB73 /* SceneDelegate.swift */,
 				97144F33259A784A009AAB73 /* ContentView.swift */,
@@ -76,6 +96,29 @@
 				97144F3B259A784C009AAB73 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		97144F47259A7879009AAB73 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				97144F4A259A78C3009AAB73 /* AccessorView.swift */,
+				97144F4F259A78C3009AAB73 /* HeaderView.swift */,
+				97144F4E259A78C3009AAB73 /* HomeContentView.swift */,
+				97144F50259A78C3009AAB73 /* HomeView.swift */,
+				97144F4B259A78C3009AAB73 /* MenuView.swift */,
+				97144F4D259A78C3009AAB73 /* ProfileView.swift */,
+				97144F49259A78C2009AAB73 /* UserSlideMenuView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		97144F48259A7880009AAB73 /* Intermediate */ = {
+			isa = PBXGroup;
+			children = (
+				97144F5C259A78CE009AAB73 /* Constant.swift */,
+				97144F5B259A78CE009AAB73 /* Toggles.swift */,
+			);
+			path = Intermediate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,8 +191,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97144F5D259A78CE009AAB73 /* Toggles.swift in Sources */,
+				97144F53259A78C3009AAB73 /* MenuView.swift in Sources */,
+				97144F55259A78C3009AAB73 /* ProfileView.swift in Sources */,
+				97144F56259A78C3009AAB73 /* HomeContentView.swift in Sources */,
 				97144F37259A784A009AAB73 /* RMartApp.xcdatamodeld in Sources */,
 				97144F30259A784A009AAB73 /* AppDelegate.swift in Sources */,
+				97144F5E259A78CE009AAB73 /* Constant.swift in Sources */,
+				97144F51259A78C3009AAB73 /* UserSlideMenuView.swift in Sources */,
+				97144F57259A78C3009AAB73 /* HeaderView.swift in Sources */,
+				97144F52259A78C3009AAB73 /* AccessorView.swift in Sources */,
+				97144F58259A78C3009AAB73 /* HomeView.swift in Sources */,
 				97144F32259A784A009AAB73 /* SceneDelegate.swift in Sources */,
 				97144F34259A784A009AAB73 /* ContentView.swift in Sources */,
 			);

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  RMartApp
 //
-//  Created by gomathi saminathan on 12/28/20.
+//  Created by RMart on 12/28/20.
 //
 
 import UIKit
