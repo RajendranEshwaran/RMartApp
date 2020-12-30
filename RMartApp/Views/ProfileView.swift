@@ -12,6 +12,8 @@ struct ProfileView: View {
     @State private var pincode:String = "19355"
     @State private var isPresented :Bool = false
     @State var offset : CGFloat = UIScreen.main.bounds.height - 500
+    @State private var isAddressShown:Bool = false
+    @State private var isPaymentShown :Bool = false
     var body: some View {
         ZStack{
         ScrollView(.vertical, showsIndicators: false, content: {
@@ -33,14 +35,11 @@ struct ProfileView: View {
                     //Text("RMart User").bold().foregroundColor(.white)
                     Spacer(minLength: 20)
                     Button(action: {
-
+//                        withAnimation{
+//
+//                        }
                         self.isPresented.toggle()
-                        let alertHC = UIHostingController(rootView: EditView())
-                        alertHC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
-                        //alertHC.preferredContentSize = CGSize(width: 400, height: 400)
-                        alertHC.modalPresentationStyle = UIModalPresentationStyle.custom
-                        UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
-
+                        
                     }, label: {
                         Image(systemName: "pencil")
                             .resizable().aspectRatio(contentMode: .fit).frame(width: 20, height: 20).foregroundColor(.white).padding(.trailing,10)
@@ -55,7 +54,11 @@ struct ProfileView: View {
                 }
                 
                 HStack {
-                    Button(action: {}, label: {
+                    Button(action: {
+                        withAnimation{
+                        self.isPaymentShown.toggle()
+                        }
+                    }, label: {
                         Text("Payment Methods").frame(width: 170, height: 40).overlay(
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.white, lineWidth: 2)).foregroundColor(.white)
@@ -70,9 +73,13 @@ struct ProfileView: View {
                     
                 }
                 Spacer(minLength: 0)
-                Button(action: {}, label: {
+                Button(action: {
+                    withAnimation{
+                        self.isAddressShown.toggle()
+                    }
+                }, label: {
                     
-                    Text("Order History").frame(width: 350, height: 40).overlay(
+                    Text("Delivery Addresses").frame(width: 350, height: 40).overlay(
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(Color.white, lineWidth: 2)).foregroundColor(.white)
                     
@@ -92,8 +99,33 @@ struct ProfileView: View {
             }).contentShape(Rectangle())
             
         }).frame(height:UIScreen.main.bounds.height)
-        
+            if(self.isPresented)
+            {
+                ZStack{
+                    Color.black.opacity(0.05).edgesIgnoringSafeArea(.all)
+                    VStack{
+                        EditView()
+                    }.animation(.easeIn)
+                }
+            }
+            if(self.isAddressShown)
+            {
+                NavigationLink(destination: DeliveryAddressView(), isActive: self.$isAddressShown) {
+                    
+                }
+            }
+            
+            if(self.isPaymentShown)
+            {
+                ZStack{
+                    Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
+                  
+                    PaymentView(isPaymentShown: self.$isPaymentShown).transition(.slide)
+                   
+                }
+            }
         }
+        
         
     }
 }
@@ -105,17 +137,15 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 struct EditView: View {
-    
-   
     var body: some View {
 
-        VStack(alignment:.center,spacing : 10) {
+        VStack{
             
             HStack{
                 
                 Button(action: {
                     print("close ")
-                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                    
                 }, label: {
                     
                     Image(systemName: "xmark.circle")
@@ -131,4 +161,33 @@ struct EditView: View {
     }
 }
 
+
+struct PaymentView: View {
+    @State private var pincode:String = "19355"
+    @Binding var isPaymentShown:Bool
+    var body: some View {
+        VStack{
+            ScrollView(.vertical, showsIndicators: false, content: {
+                HStack{
+                    Button(action: {
+                        self.isPaymentShown = false
+                    }, label: {
+                        Image(systemName: "xmark")
+                    })
+                    Spacer()
+                    Text("Payment Methods").bold().font(.title).foregroundColor(Color("blueTheme"))
+                    Spacer()
+                }
+                Divider()
+                HStack{
+                    Text("SAVED CARDS").font(.system(size: 10))
+                    Spacer()
+                }
+                Divider()
+            Spacer()
+            }).frame(height:UIScreen.main.bounds.height - 150)
+            }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
+     
+    }
+}
 
