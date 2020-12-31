@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State var offset : CGFloat = UIScreen.main.bounds.height - 500
     @State private var isAddressShown:Bool = false
     @State private var isPaymentShown :Bool = false
+    @State private var isOrderHistoryShown :Bool = false
     var body: some View {
         ZStack{
         ScrollView(.vertical, showsIndicators: false, content: {
@@ -65,7 +66,11 @@ struct ProfileView: View {
                     }).frame(width: 170, height: 40).padding(.leading,10)
                     
                     
-                    Button(action: {}, label: {
+                    Button(action: {
+                        withAnimation{
+                            self.isOrderHistoryShown.toggle()
+                        }
+                    }, label: {
                         Text("Order History").frame(width: 170, height: 40).overlay(
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.white, lineWidth: 2)).foregroundColor(.white)
@@ -121,6 +126,15 @@ struct ProfileView: View {
                     Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
                   
                     PaymentView(isPaymentShown: self.$isPaymentShown).transition(.slide)
+                   
+                }
+            }
+            if(self.isOrderHistoryShown)
+            {
+                ZStack{
+                    Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
+                  
+                    MyOrders(isOrderHistoryShown: self.$isOrderHistoryShown).transition(.slide)
                    
                 }
             }

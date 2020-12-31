@@ -2,7 +2,7 @@
 //  MyOrders.swift
 //  RMartApp
 //
-//  Created by gomathi saminathan on 12/28/20.
+//  Created by RMart on 12/28/20.
 //
 
 import SwiftUI
@@ -10,6 +10,7 @@ import SwiftUI
 struct MyOrders: View {
     @State private var pincode:String = "19355"
     @State private var select:Int = 1
+    @Binding var isOrderHistoryShown:Bool
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
             VStack{
@@ -54,7 +55,7 @@ extension Binding {
 }
 struct MyOrders_Previews: PreviewProvider {
     static var previews: some View {
-        MyOrders()
+        MyOrders(isOrderHistoryShown: .constant(false))
     }
 }
 

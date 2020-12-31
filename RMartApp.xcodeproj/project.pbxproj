@@ -25,6 +25,8 @@
 		97144F5E259A78CE009AAB73 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F5C259A78CE009AAB73 /* Constant.swift */; };
 		97144F74259AB82D009AAB73 /* MyOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F73259AB82D009AAB73 /* MyOrders.swift */; };
 		97144F77259AC1EE009AAB73 /* DeliveryAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F76259AC1EE009AAB73 /* DeliveryAddressView.swift */; };
+		97AEC204259CFBF9007627E6 /* MyCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEC203259CFBF9007627E6 /* MyCartView.swift */; };
+		97AEC207259D55FA007627E6 /* MyWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEC206259D55FA007627E6 /* MyWallet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		97144F5C259A78CE009AAB73 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		97144F73259AB82D009AAB73 /* MyOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrders.swift; sourceTree = "<group>"; };
 		97144F76259AC1EE009AAB73 /* DeliveryAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryAddressView.swift; sourceTree = "<group>"; };
+		97AEC203259CFBF9007627E6 /* MyCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCartView.swift; sourceTree = "<group>"; };
+		97AEC206259D55FA007627E6 /* MyWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWallet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				97144F49259A78C2009AAB73 /* UserSlideMenuView.swift */,
 				97144F73259AB82D009AAB73 /* MyOrders.swift */,
 				97144F76259AC1EE009AAB73 /* DeliveryAddressView.swift */,
+				97AEC203259CFBF9007627E6 /* MyCartView.swift */,
+				97AEC206259D55FA007627E6 /* MyWallet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,12 +209,14 @@
 				97144F56259A78C3009AAB73 /* HomeContentView.swift in Sources */,
 				97144F74259AB82D009AAB73 /* MyOrders.swift in Sources */,
 				97144F37259A784A009AAB73 /* RMartApp.xcdatamodeld in Sources */,
+				97AEC204259CFBF9007627E6 /* MyCartView.swift in Sources */,
 				97144F30259A784A009AAB73 /* AppDelegate.swift in Sources */,
 				97144F5E259A78CE009AAB73 /* Constant.swift in Sources */,
 				97144F51259A78C3009AAB73 /* UserSlideMenuView.swift in Sources */,
 				97144F77259AC1EE009AAB73 /* DeliveryAddressView.swift in Sources */,
 				97144F57259A78C3009AAB73 /* HeaderView.swift in Sources */,
 				97144F52259A78C3009AAB73 /* AccessorView.swift in Sources */,
+				97AEC207259D55FA007627E6 /* MyWallet.swift in Sources */,
 				97144F58259A78C3009AAB73 /* HomeView.swift in Sources */,
 				97144F32259A784A009AAB73 /* SceneDelegate.swift in Sources */,
 				97144F34259A784A009AAB73 /* ContentView.swift in Sources */,

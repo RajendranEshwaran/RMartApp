@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @State private var searchText:String = ""
     @State var isDrawerOpen: Bool = false
+    @State var isCartOpen: Bool = false
     //@State var index = "Home"
     @EnvironmentObject var setting: Toggles
     var body: some View {
@@ -38,7 +39,11 @@ struct HomeView: View {
                             .frame(width: geometry.size.width/2+100)
                             .transition(.move(edge: .leading))
                     }
-                    
+                    if(self.isCartOpen)
+                    {
+                        NavigationLink(destination: MyCartView(), isActive: self.$isCartOpen) {
+                        }
+                    }
                 }
                 .gesture(drag)
             }
@@ -61,11 +66,13 @@ struct HomeView: View {
                 }
                 Spacer(minLength: 30)
                 Button(action: {
-                    //self.isDrawerOpen.toggle()
+                    self.isCartOpen.toggle()
                 }) {
                     Image(systemName: "cart.fill")
                 }
             }).foregroundColor(.white)
+            
+            
         }
     }
 }
