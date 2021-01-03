@@ -75,6 +75,7 @@ struct HomeView: View {
             
         }
     }
+    
 }
    
 struct HomeView_Previews: PreviewProvider {
@@ -89,27 +90,36 @@ struct MainView: View {
     @EnvironmentObject var setting: Toggles
     var body: some View {
         
-        if !setting.showMenu
-        {
-            HomeContentView()
-        }
-        if(setting.showSign)
-        {
-            //AccessorView()
-            NavigationLink(destination: ProfileView(), isActive: $setting.showSign) {
+        VStack{
+            if !setting.showMenu
+            {
                 HomeContentView()
+            }
+            if(setting.showSign)
+            {
+                //SignInView()
+                NavigationLink(destination: ProfileView(), isActive: $setting.showSign) {
+                    HomeContentView()
+                    
+                }
                 
+            }
+            if(setting.showWallet)
+            {
+                NavigationLink(destination: MyWalletView(), isActive: $setting.showWallet) {
+                }
             }
             
         }
-        /*Button(action: {
-            withAnimation {
-               self.showMenu = true
-            }
-        }) {
-            //Text("Show Menu")
-            HomeContentView()
-
-        }*/
+        .onAppear(){
+            resetToggle()
+        }
+    }
+    func resetToggle()
+    {
+        setting.homeToggle = true
+        setting.showMenu = false
+        setting.showSign = false
+        setting.showWallet = false
     }
 }

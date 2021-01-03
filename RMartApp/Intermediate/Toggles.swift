@@ -12,7 +12,7 @@ class Toggles: ObservableObject{
     @Published var homeToggle:Bool = false
     @Published var showMenu = false
     @Published var showSign:Bool = false
-    
+    @Published var showWallet:Bool = false
 }
 
 class NumbersOnly: ObservableObject {

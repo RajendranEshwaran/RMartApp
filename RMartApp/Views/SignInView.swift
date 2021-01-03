@@ -1,5 +1,5 @@
 //
-//  AccessorView.swift
+//  SignInView.swift
 //  RMart
 //
 //  Created by RMart on 12/24/20.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AccessorView: View {
+struct SignInView: View {
     @ObservedObject var otpNumber = NumbersOnly()
     @State private var isOtp:Bool = true
     @ObservedObject var phoneNumber = NumbersOnly()
@@ -91,9 +91,9 @@ struct AccessorView: View {
     }
 }
 
-struct AccessorView_Previews: PreviewProvider {
+struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        AccessorView()
+        SignInView()
     }
 }
 

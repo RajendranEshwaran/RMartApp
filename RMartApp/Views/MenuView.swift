@@ -45,7 +45,9 @@ struct MenuView: View {
                     Text("My Orders").padding(.trailing,125).foregroundColor(.white)
                 }).padding()
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    setting.showWallet.toggle()
+                }, label: {
                     Text("RMart Wallet").padding(.trailing,115).foregroundColor(.white)
                 }).padding()
                 
@@ -70,7 +72,6 @@ struct MenuView: View {
                     }).padding()
                     
                     Button(action: {withAnimation{
-                        setting.showMenu = false
                         setting.showSign.toggle()
                     }}, label: {
                         Text("Sign Out").padding(.trailing,160).foregroundColor(.white)
@@ -88,6 +89,7 @@ struct MenuView: View {
         
        
     }
+    
     
 }
 
