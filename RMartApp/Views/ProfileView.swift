@@ -103,7 +103,7 @@ struct ProfileView: View {
                 Text("Contact Us").padding(.leading,10)
             }).contentShape(Rectangle())
             
-        }).frame(height:UIScreen.main.bounds.height)
+        }).frame(height:UIScreen.main.bounds.height).padding(.top,100)
             if(self.isPresented)
             {
                 ZStack{
@@ -134,7 +134,7 @@ struct ProfileView: View {
                 ZStack{
                     Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
                   
-                    MyOrders(isOrderHistoryShown: self.$isOrderHistoryShown).transition(.slide)
+                    MyOrdersView(isOrderHistoryShown: self.$isOrderHistoryShown).transition(.slide)
                    
                 }
             }

@@ -2,7 +2,7 @@
 //  Constant.swift
 //  RMart
 //
-//  Created by gomathi saminathan on 12/23/20.
+//  Created by RMart on 12/23/20.
 //
 
 import Foundation
@@ -19,5 +19,10 @@ public enum DealsKeys:String{
     case topDealsForYou = "Top Deals for You"
     case bestDealsForYou = "Best Deals for You"
     case exclusiveDealsForYou = "Exclusive Deals for You"
+    case collectionWithBOffers = "Collection with Best Offers"
+    case womensFashions = "Women's Fashions"
+    case kidsFashions = "Kid's Fashions"
+    case mensFashions = "Men's Fashions"
+    
 }
 

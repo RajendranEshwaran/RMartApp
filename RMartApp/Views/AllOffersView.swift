@@ -20,7 +20,7 @@ struct AllOffersView: View {
                 Text("All Offters").bold().padding(10)
                 Spacer()
             }.frame(width:UIScreen.main.bounds.width,height: 50).background(Color.white.opacity(1))
-            ForEach(0..<2){id in
+            ForEach(0..<5){id in
             VStack{
                 HStack{
                     Image(systemName: "wallet.pass").padding(10)
@@ -32,7 +32,10 @@ struct AllOffersView: View {
             }.frame(width:UIScreen.main.bounds.width,height: 170).background(Color.white.opacity(1))
                Spacer(minLength: 10)
             }
-        }).frame(height:UIScreen.main.bounds.height).background(Color.gray.opacity(0.2))
+            VStack{
+                Text("@2020 All rights are reserved")
+            }.frame(width:UIScreen.main.bounds.width,height: 50).background(Color.white.opacity(1))
+        }).padding(.top,100).frame(height:UIScreen.main.bounds.height).background(Color.gray.opacity(0.2))
     }
 }
 

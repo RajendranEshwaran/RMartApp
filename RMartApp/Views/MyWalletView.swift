@@ -31,7 +31,7 @@ struct MyWalletView: View {
                     }.frame(width:UIScreen.main.bounds.width,height:UIScreen.main.bounds.height/6)
                 }
                 
-            }).frame(height:UIScreen.main.bounds.height)
+            }).frame(height:UIScreen.main.bounds.height).padding(.top,100)
       
     }
 }

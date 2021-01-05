@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyOrders: View {
+struct MyOrdersView: View {
     @State private var pincode:String = "19355"
     @State private var select:Int = 1
     @Binding var isOrderHistoryShown:Bool
@@ -33,7 +33,7 @@ struct MyOrders: View {
             else{
                 ReturnsView()
             }
-        }).frame(height:UIScreen.main.bounds.height)
+        }).frame(height:UIScreen.main.bounds.height).padding(.top,100)
     }
     
     func segmentChange(_ tag: Int) {
@@ -53,9 +53,9 @@ extension Binding {
         })
     }
 }
-struct MyOrders_Previews: PreviewProvider {
+struct MyOrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        MyOrders(isOrderHistoryShown: .constant(false))
+        MyOrdersView(isOrderHistoryShown: .constant(false))
     }
 }
 

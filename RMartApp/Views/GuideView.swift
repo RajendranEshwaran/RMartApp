@@ -1,13 +1,13 @@
 //
-//  MySubscriptionView.swift
+//  GuideView.swift
 //  RMartApp
 //
-//  Created by RMart on 1/1/21.
+//  Created by RMart on 1/3/21.
 //
 
 import SwiftUI
 
-struct MySubscriptionView: View {
+struct GuideView: View {
     @State private var pincode:String = "19355"
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
@@ -21,8 +21,8 @@ struct MySubscriptionView: View {
     }
 }
 
-struct MySubscriptionView_Previews: PreviewProvider {
+struct GuideView_Previews: PreviewProvider {
     static var previews: some View {
-        MySubscriptionView()
+        GuideView()
     }
 }

@@ -14,19 +14,19 @@ struct HomeView: View {
     @State var isDrawerOpen: Bool = false
     @State var isCartOpen: Bool = false
     //@State var index = "Home"
-    @EnvironmentObject var setting: Toggles
+    @EnvironmentObject var setting: Settings
     var body: some View {
-
-
+        
+        
         let drag = DragGesture()
-                    .onEnded {
-                        if $0.translation.width < -100 {
-                            withAnimation {
-                                setting.showMenu = false
-                            }
-                        }
+            .onEnded {
+                if $0.translation.width < -100 {
+                    withAnimation {
+                        setting.showMenu = false
                     }
-                
+                }
+            }
+        
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
@@ -87,19 +87,20 @@ struct HomeView_Previews: PreviewProvider {
 
 
 struct MainView: View {
-    @EnvironmentObject var setting: Toggles
+    @EnvironmentObject var setting: Settings
     var body: some View {
         
         VStack{
-            if !setting.showMenu
-            {
-                HomeContentView()
-            }
+            HomeContentView()
+//            if !setting.showMenu
+//            {
+//                HomeContentView()
+//            }
             if(setting.showSign)
             {
-                //SignInView()
+                
                 NavigationLink(destination: ProfileView(), isActive: $setting.showSign) {
-                    HomeContentView()
+                  //  HomeContentView()
                     
                 }
                 
@@ -109,7 +110,52 @@ struct MainView: View {
                 NavigationLink(destination: MyWalletView(), isActive: $setting.showWallet) {
                 }
             }
+            if(setting.showAllOffers)
+            {
+                NavigationLink(destination:AllOffersView(),isActive:$setting.showAllOffers)
+                {
+                    
+                }
+            }
+            if(setting.showCustomerService)
+            {
+                NavigationLink(destination:CustomerServiceView(),isActive:$setting.showCustomerService)
+                {
+                    
+                }
+            }
             
+            if(setting.showGuide)
+            {
+                NavigationLink(destination:GuideView(),isActive:$setting.showGuide)
+                {
+                    
+                }
+            }
+            
+            if(setting.showMyOrders)
+            {
+                NavigationLink(destination:MyOrdersView(isOrderHistoryShown: .constant(false)),isActive:$setting.showMyOrders)
+                {
+                    
+                }
+            }
+            
+            if(setting.showMySubscription)
+            {
+                NavigationLink(destination:MySubscriptionView(),isActive:$setting.showMySubscription)
+                {
+                    
+                }
+            }
+            
+            if(setting.showShopCategory)
+            {
+                NavigationLink(destination:ShopCategoryView(),isActive:$setting.showShopCategory)
+                {
+                    
+                }
+            }
         }
         .onAppear(){
             resetToggle()
@@ -121,5 +167,11 @@ struct MainView: View {
         setting.showMenu = false
         setting.showSign = false
         setting.showWallet = false
+        setting.showAllOffers = false
+        setting.showGuide = false
+        setting.showCustomerService = false
+        setting.showMyOrders = false
+        setting.showMySubscription = false
+        setting.showShopCategory = false
     }
 }

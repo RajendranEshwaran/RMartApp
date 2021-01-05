@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
-    @EnvironmentObject var setting: Toggles
+    @EnvironmentObject var setting: Settings
    
     var body: some View {
         VStack{
@@ -37,11 +37,15 @@ struct MenuView: View {
                     Text("Home").foregroundColor(.white).padding(.trailing,150)
                 }).padding()
                
-                Button(action: {}, label: {
+                Button(action: {
+                    setting.showShopCategory.toggle()
+                }, label: {
                     Text("Shop By Category").padding(.trailing,60).foregroundColor(.white)
                 }).padding()
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    setting.showMyOrders.toggle()
+                }, label: {
                     Text("My Orders").padding(.trailing,125).foregroundColor(.white)
                 }).padding()
                 
@@ -51,11 +55,15 @@ struct MenuView: View {
                     Text("RMart Wallet").padding(.trailing,115).foregroundColor(.white)
                 }).padding()
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    setting.showMySubscription.toggle()
+                }, label: {
                     Text("My Subscription").padding(.trailing,85).foregroundColor(.white)
                 }).padding()
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    setting.showAllOffers.toggle()
+                }, label: {
                     Text("All Offers").padding(.trailing,135).foregroundColor(.white)
                 }).padding()
                 
@@ -63,11 +71,15 @@ struct MenuView: View {
                     Divider()
                     Text("Help and Settings").padding(.trailing,120).foregroundColor(.gray)
                     
-                    Button(action: {}, label: {
+                    Button(action: {
+                        setting.showCustomerService.toggle()
+                    }, label: {
                         Text("Customer Service").padding(.trailing,95).foregroundColor(.white)
                     }).padding()
                     
-                    Button(action: {}, label: {
+                    Button(action: {
+                        setting.showGuide.toggle()
+                    }, label: {
                         Text("Guide").padding(.trailing,180).foregroundColor(.white)
                     }).padding()
                     

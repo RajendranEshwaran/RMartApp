@@ -1,5 +1,5 @@
 //
-//  Toggles.swift
+//  Settings.swift
 //  RMart
 //
 //  Created by RMart on 12/24/20.
@@ -7,12 +7,18 @@
 
 import Foundation
 
-class Toggles: ObservableObject{
+class Settings: ObservableObject{
     
     @Published var homeToggle:Bool = false
     @Published var showMenu = false
     @Published var showSign:Bool = false
     @Published var showWallet:Bool = false
+    @Published var showAllOffers:Bool = false
+    @Published var showCustomerService:Bool = false
+    @Published var showGuide:Bool = false
+    @Published var showMyOrders:Bool = false
+    @Published var showMySubscription:Bool = false
+    @Published var showShopCategory:Bool = false
 }
 
 class NumbersOnly: ObservableObject {
