@@ -8,25 +8,31 @@
 import SwiftUI
 
 struct HomeContentView: View {
-    @State private var pincode:String = "19355"
+    
     @State private var numberofImages = 5
     @State private var numberofShopfromcategory = 6
     @State private var timer = Timer.publish(every:3,on:.main,in:.common).autoconnect()
     @State private var currentIndex = 0
-    
+    @State private var pincode:String = "19355"
+    @EnvironmentObject var setting : Settings
     var body: some View {
         VStack{
+            //Mark:- Header panel and searchbar
+            HeaderSearchDummyView()
+            Spacer(minLength: 0)
             ScrollView(.vertical, showsIndicators: false, content: {
-                HStack{
-                    Label("Deliver to \(pincode)", systemImage: "mappin").frame(width:UIScreen.main.bounds.width,height: 50).background(Color("blueThemeLight")).foregroundColor(.white).font(.title3)
-                }
-                Spacer(minLength: 5)
+                pincodeBarView()
+                Spacer(minLength: 0)
                 // Category portion
                 ScrollView(.horizontal,showsIndicators:false) {
                     HStack(spacing: 20) {
-                        ForEach(0..<10) { index in
-                            
-                            Circle().fill(Color("blueTheme")).frame(width:100,height:100)
+                        ForEach(setting.categoryArray, id: \.self) { categoryItem in
+                            VStack{
+                                Spacer(minLength:0)
+                            Circle().fill(Color("blueTheme")).frame(width:80,height:80)
+                                Spacer(minLength:0)
+                                Text("\(categoryItem)").foregroundColor(.black).font(.system(size: 12))
+                            }
                         }
                         
                     }.padding()
@@ -388,3 +394,5 @@ struct GridStack<Content: View>: View {
         self.content = content
     }
 }
+
+

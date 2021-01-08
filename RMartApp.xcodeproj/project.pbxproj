@@ -28,6 +28,9 @@
 		9740633B259FF6A500781119 /* MySubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9740633A259FF6A500781119 /* MySubscriptionView.swift */; };
 		9740633E259FF76200781119 /* AllOffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9740633D259FF76200781119 /* AllOffersView.swift */; };
 		9765F98325A52B6A00816BFF /* gmart2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9765F98225A52B6900816BFF /* gmart2.png */; };
+		9765F98625A6490000816BFF /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9765F98525A6490000816BFF /* TestView.swift */; };
+		9765F98B25A76F3900816BFF /* HeaderSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9765F98A25A76F3900816BFF /* HeaderSearchView.swift */; };
+		9765F98E25A788F600816BFF /* SearchedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9765F98D25A788F600816BFF /* SearchedContentView.swift */; };
 		9782035425A28D8400F21F42 /* CustomerServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782035325A28D8300F21F42 /* CustomerServiceView.swift */; };
 		9782035725A28EFF00F21F42 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782035625A28EFF00F21F42 /* GuideView.swift */; };
 		97AEC204259CFBF9007627E6 /* MyCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEC203259CFBF9007627E6 /* MyCartView.swift */; };
@@ -59,6 +62,9 @@
 		9740633A259FF6A500781119 /* MySubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubscriptionView.swift; sourceTree = "<group>"; };
 		9740633D259FF76200781119 /* AllOffersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllOffersView.swift; sourceTree = "<group>"; };
 		9765F98225A52B6900816BFF /* gmart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gmart2.png; sourceTree = "<group>"; };
+		9765F98525A6490000816BFF /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		9765F98A25A76F3900816BFF /* HeaderSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSearchView.swift; sourceTree = "<group>"; };
+		9765F98D25A788F600816BFF /* SearchedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedContentView.swift; sourceTree = "<group>"; };
 		9782035325A28D8300F21F42 /* CustomerServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceView.swift; sourceTree = "<group>"; };
 		9782035625A28EFF00F21F42 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		97AEC203259CFBF9007627E6 /* MyCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCartView.swift; sourceTree = "<group>"; };
@@ -80,8 +86,8 @@
 		97144F23259A784A009AAB73 = {
 			isa = PBXGroup;
 			children = (
-				9765F98225A52B6900816BFF /* gmart2.png */,
 				97144F2E259A784A009AAB73 /* RMartApp */,
+				9765F98225A52B6900816BFF /* gmart2.png */,
 				97144F2D259A784A009AAB73 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -138,6 +144,9 @@
 				9782035325A28D8300F21F42 /* CustomerServiceView.swift */,
 				9782035625A28EFF00F21F42 /* GuideView.swift */,
 				97FA550525A3CF96006A5587 /* ShopCategoryView.swift */,
+				9765F98525A6490000816BFF /* TestView.swift */,
+				9765F98A25A76F3900816BFF /* HeaderSearchView.swift */,
+				9765F98D25A788F600816BFF /* SearchedContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,9 +247,12 @@
 				97144F77259AC1EE009AAB73 /* DeliveryAddressView.swift in Sources */,
 				97144F57259A78C3009AAB73 /* HeaderView.swift in Sources */,
 				97144F52259A78C3009AAB73 /* SignInView.swift in Sources */,
+				9765F98E25A788F600816BFF /* SearchedContentView.swift in Sources */,
 				97AEC207259D55FA007627E6 /* MyWalletView.swift in Sources */,
 				97144F58259A78C3009AAB73 /* HomeView.swift in Sources */,
 				9740633E259FF76200781119 /* AllOffersView.swift in Sources */,
+				9765F98B25A76F3900816BFF /* HeaderSearchView.swift in Sources */,
+				9765F98625A6490000816BFF /* TestView.swift in Sources */,
 				9782035725A28EFF00F21F42 /* GuideView.swift in Sources */,
 				97144F32259A784A009AAB73 /* SceneDelegate.swift in Sources */,
 				97144F34259A784A009AAB73 /* ContentView.swift in Sources */,

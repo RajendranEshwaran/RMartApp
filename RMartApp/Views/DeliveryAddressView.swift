@@ -86,7 +86,7 @@ struct DeliveryAddressView:View {
                     }
                 }
             }
-        }).frame(height:UIScreen.main.bounds.height)
+        }).frame(height:UIScreen.main.bounds.height).padding(.top,115)
     }
     
     func toggle(){isChecked = !isChecked}

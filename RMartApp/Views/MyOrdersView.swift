@@ -12,10 +12,12 @@ struct MyOrdersView: View {
     @State private var select:Int = 1
     @Binding var isOrderHistoryShown:Bool
     var body: some View {
+        //Mark:- Header panel and searchbar
+        HeaderSearchDummyView()
+        Spacer(minLength:0)
         ScrollView(.vertical, showsIndicators: false, content: {
-            VStack{
-                Label("Deliver to \(pincode)", systemImage: "mappin").frame(width:UIScreen.main.bounds.width,height: 50).background(Color("blueThemeLight")).foregroundColor(.white).font(.title3)
-            }
+            
+            pincodeBarView()
             Spacer(minLength:0)
             
             Picker(selection: self.$select, label:Text("1") , content: {
@@ -33,7 +35,8 @@ struct MyOrdersView: View {
             else{
                 ReturnsView()
             }
-        }).frame(height:UIScreen.main.bounds.height).padding(.top,100)
+        })//.frame(height:UIScreen.main.bounds.height).padding(.top,110)
+        .edgesIgnoringSafeArea(.all)
     }
     
     func segmentChange(_ tag: Int) {

@@ -10,11 +10,12 @@ import SwiftUI
 struct AllOffersView: View {
     @State private var pincode:String = "19355"
     var body: some View {
+        
+        //Mark:- Header panel and searchbar
+        HeaderSearchDummyView()
+        Spacer(minLength:0)
         ScrollView(.vertical, showsIndicators: false, content: {
-            
-            VStack{
-                Label("Deliver to \(pincode)", systemImage: "mappin").frame(width:UIScreen.main.bounds.width,height: 50).background(Color("blueThemeLight")).foregroundColor(.white).font(.title3)
-            }
+            pincodeBarView()
             Spacer(minLength:0)
             HStack{
                 Text("All Offters").bold().padding(10)
@@ -35,7 +36,9 @@ struct AllOffersView: View {
             VStack{
                 Text("@2020 All rights are reserved")
             }.frame(width:UIScreen.main.bounds.width,height: 50).background(Color.white.opacity(1))
-        }).padding(.top,100).frame(height:UIScreen.main.bounds.height).background(Color.gray.opacity(0.2))
+            
+        }).background(Color.gray.opacity(0.2))//.padding(.top,115)//.frame(height:UIScreen.main.bounds.height).background(Color.green.opacity(0.2))
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

@@ -17,7 +17,6 @@ struct HomeView: View {
     @EnvironmentObject var setting: Settings
     var body: some View {
         
-        
         let drag = DragGesture()
             .onEnded {
                 if $0.translation.width < -100 {
@@ -96,12 +95,16 @@ struct MainView: View {
 //            {
 //                HomeContentView()
 //            }
+            if(!setting.showLocation)
+            {
+                withAnimation(.easeIn){
+                    LocationPopupView()
+                }
+            }
             if(setting.showSign)
             {
                 
                 NavigationLink(destination: ProfileView(), isActive: $setting.showSign) {
-                  //  HomeContentView()
-                    
                 }
                 
             }
@@ -173,5 +176,59 @@ struct MainView: View {
         setting.showMyOrders = false
         setting.showMySubscription = false
         setting.showShopCategory = false
+        setting.showLocation = true
+        //setting.showSearchWindow = false
     }
+}
+
+struct LocationPopupView: View
+{
+    @State private var pincode:String = "19355"
+    @EnvironmentObject var setting: Settings
+    var body: some View
+    {
+        VStack{
+            HStack
+            {
+                Text("Where do you want to delivery?").padding()
+                Spacer(minLength:0)
+                Button(action: {
+                    withAnimation{
+                        print("close")
+                        setting.showLocation = true
+                    }
+                   
+                }, label: {
+                    Image(systemName: "xmark").padding()
+                })
+            }
+            Spacer(minLength: 0)
+            VStack{
+                Text("Get the access to you Addresses,Orders,Wishlist").font(.system(size: 10)).padding(.trailing,100)
+                Spacer(minLength: 0)
+            }
+            VStack{
+            Button(action: {}, label: {
+                Text("Sign in to see Your Addresses").bold().frame(width: UIScreen.main.bounds.width - 50, height: UIScreen.main.bounds.height/20).foregroundColor(.white)
+            }).background(Color("blueTheme")).overlay(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 1.0).foregroundColor(Color.white))
+               
+                Divider().border(Color.black, width: 10)
+                Text("Or Enter Pincode").bold().padding(.trailing,250).font(.system(size: 15))
+                Text("Select pincode to see product availability").padding(.trailing,170).font(.system(size: 10))
+                HStack {
+                    Image("map2").resizable().frame(width:20,height: 30).aspectRatio(contentMode: .fit)
+                    TextField("", text: .constant("Enter Pincode")).foregroundColor(Color.red).frame(height:20)
+                    Button(action: {}, label: {
+                        Text("Apply").foregroundColor(.white).font(.system(size: 15)).background(Color.red)
+                    })
+                }
+                .padding()
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 0.5).foregroundColor(Color.red))
+                Spacer(minLength:50)
+               
+            }
+
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3).background(Color("blueTheme").opacity(1.0))
+    }
+   
 }
