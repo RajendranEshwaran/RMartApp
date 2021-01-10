@@ -18,8 +18,8 @@ struct HomeContentView: View {
     var body: some View {
         VStack{
             //Mark:- Header panel and searchbar
-            HeaderSearchDummyView()
-            Spacer(minLength: 0)
+            HeaderSearchView()
+            Spacer(minLength:0)
             ScrollView(.vertical, showsIndicators: false, content: {
                 pincodeBarView()
                 Spacer(minLength: 0)
@@ -48,12 +48,12 @@ struct HomeContentView: View {
                             .frame(height:200)
                     }
                 }.tabViewStyle(PageTabViewStyle()).frame(width: UIScreen.main.bounds.width, height: 50)
-                .onReceive(timer, perform: { _ in
+                /*.onReceive(timer, perform: { _ in
                     withAnimation{
                     currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
                         print(currentIndex)
                     }
-                })
+                })*/
                 }
                 Spacer(minLength: 100)
                 VStack()
@@ -110,12 +110,12 @@ struct TopDealsView: View{
                     .frame(height:200)
             }
         }.tabViewStyle(PageTabViewStyle()).frame(width: UIScreen.main.bounds.width, height: 50)
-        .onReceive(timer, perform: { _ in
-            withAnimation{
-            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
-                print(currentIndex)
-            }
-        })
+//        .onReceive(timer, perform: { _ in
+//            withAnimation{
+//            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
+//                print(currentIndex)
+//            }
+//        })
         }
         
         Spacer(minLength: 100)
@@ -164,12 +164,12 @@ struct ShopGroceryView: View{
                     .frame(height:200)
             }
         }.tabViewStyle(PageTabViewStyle()).frame(width: UIScreen.main.bounds.width, height: 50)
-        .onReceive(timer, perform: { _ in
-            withAnimation{
-            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
-                print(currentIndex)
-            }
-        })
+//        .onReceive(timer, perform: { _ in
+//            withAnimation{
+//            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
+//                print(currentIndex)
+//            }
+//        })
         }
         
         Spacer(minLength: 100)
@@ -219,12 +219,12 @@ struct TopDealsForYouView: View{
                     .frame(height:200)
             }
         }.tabViewStyle(PageTabViewStyle()).frame(width: UIScreen.main.bounds.width, height: 50)
-        .onReceive(timer, perform: { _ in
-            withAnimation{
-            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
-                print(currentIndex)
-            }
-        })
+//        .onReceive(timer, perform: { _ in
+//            withAnimation{
+//            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
+//                print(currentIndex)
+//            }
+//        })
         }
         
         Spacer(minLength: 100)
@@ -274,12 +274,12 @@ struct BestDealsForYouView: View{
                     .frame(height:200)
             }
         }.tabViewStyle(PageTabViewStyle()).frame(width: UIScreen.main.bounds.width, height: 50)
-        .onReceive(timer, perform: { _ in
-            withAnimation{
-            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
-                print(currentIndex)
-            }
-        })
+//        .onReceive(timer, perform: { _ in
+//            withAnimation{
+//            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
+//                print(currentIndex)
+//            }
+//        })
         }
         
         Spacer(minLength: 100)
@@ -328,12 +328,12 @@ struct ExclusiveDealsForYouView: View{
                     .frame(height:200)
             }
         }.tabViewStyle(PageTabViewStyle()).frame(width: UIScreen.main.bounds.width, height: 50)
-        .onReceive(timer, perform: { _ in
-            withAnimation{
-            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
-                print(currentIndex)
-            }
-        })
+//        .onReceive(timer, perform: { _ in
+//            withAnimation{
+//            currentIndex = currentIndex < numberofImages ? currentIndex + 1 : 0
+//                print(currentIndex)
+//            }
+//        })
         }
         
         Spacer(minLength: 100)

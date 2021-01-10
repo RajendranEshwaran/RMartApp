@@ -43,6 +43,7 @@ struct HomeView: View {
                         NavigationLink(destination: MyCartView(), isActive: self.$isCartOpen) {
                         }
                     }
+                   
                 }
                 .gesture(drag)
             }
@@ -68,6 +69,12 @@ struct HomeView: View {
                     self.isCartOpen.toggle()
                 }) {
                     Image(systemName: "cart.fill")
+                    
+                }
+                ZStack{
+                    Circle().fill(Color.red).frame(width:15,height: 15)
+                        .offset(x: -10.0, y: -10.0)
+                    Text("0").font(.system(size: 10)) .frame(width:15,height: 15).offset(x: -10.0, y: -10.0)
                 }
             }).foregroundColor(.white)
             
@@ -87,6 +94,7 @@ struct HomeView_Previews: PreviewProvider {
 
 struct MainView: View {
     @EnvironmentObject var setting: Settings
+    @State var selection: Int? = nil
     var body: some View {
         
         VStack{
@@ -156,12 +164,14 @@ struct MainView: View {
             {
                 NavigationLink(destination:ShopCategoryView(),isActive:$setting.showShopCategory)
                 {
-                    
+
                 }
             }
         }
         .onAppear(){
+            
             resetToggle()
+            
         }
     }
     func resetToggle()
@@ -177,7 +187,7 @@ struct MainView: View {
         setting.showMySubscription = false
         setting.showShopCategory = false
         setting.showLocation = true
-        //setting.showSearchWindow = false
+        setting.showSearchWindow = false
     }
 }
 

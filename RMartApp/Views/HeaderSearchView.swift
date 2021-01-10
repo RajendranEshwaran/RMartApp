@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct HeaderSearchDummyView: View {
     @State private var searchText = ""
@@ -15,11 +16,20 @@ struct HeaderSearchDummyView: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                 
-                TextField("search your products...", text: $searchText).foregroundColor(.primary)
-                    .onTapGesture {
-                        if(!setting.showSearchWindow){
-                            setting.showSearchWindow.toggle()}
-                    }
+//                TextField("search your products...", text: $searchText, onEditingChanged: { isEditing in
+//                    //self.showCancelButton = true
+//
+//                }, onCommit: {
+//
+//                    print("onCommit")
+//                }).foregroundColor(.primary).onTapGesture {
+//                    setting.showSearchWindow = true
+//                }
+                Button(action: {
+                    setting.showSearchWindow.toggle()
+                }) {
+                    Text("search click")
+                }.frame(width: 300, height: 30)
                 Button(action: {
                     
                 }) {
@@ -35,14 +45,15 @@ struct HeaderSearchDummyView: View {
             .foregroundColor(.white)
             .background(Color("blueTheme"))
             .cornerRadius(2.0)
-        }.frame(width:UIScreen.main.bounds.width,height: 50).background(Color("blueThemeLight"))
-        if(setting.showSearchWindow)
-        {
-            NavigationLink(destination:SearchedContentView(),isActive:$setting.showSearchWindow)
+            if(setting.showSearchWindow)
             {
-                
+                NavigationLink(destination:SearchedContentView(),isActive:$setting.showSearchWindow)
+                {
+                   
+                }
             }
-        }
+        }.frame(width:UIScreen.main.bounds.width,height: 50).background(Color("blueThemeLight"))
+        
     }
 }
 struct HeaderSearchView: View {
@@ -50,6 +61,7 @@ struct HeaderSearchView: View {
     @State private var pincode:String = "19355"
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
+    @State private var showQRScanner: Bool = false
     var body: some View {
         VStack{
             HStack{
@@ -65,10 +77,7 @@ struct HeaderSearchView: View {
                 }, onCommit: {
                     print("onCommit")
                 }).foregroundColor(.primary)
-                .onTapGesture {
-                    if(!setting.showSearchWindow){
-                        setting.showSearchWindow.toggle()}
-                }
+                
                 Button(action: {
                     self.searchText = ""
                 }) {
@@ -91,10 +100,12 @@ struct HeaderSearchView: View {
                 }
                 
                 Button(action: {
-                    
+                    showQRScanner.toggle()
                 }) {
                     Image(systemName: "qrcode.viewfinder")
-                }
+                }.sheet(isPresented: $showQRScanner, content: {
+                    CodeScannerView(codeTypes: [.qr],simulatedData: "qr testing", completion:self.handleScane(result:))
+                })
             }
             .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
             .foregroundColor(.secondary)
@@ -102,9 +113,26 @@ struct HeaderSearchView: View {
             .cornerRadius(10.0)
             
         }.frame(width:UIScreen.main.bounds.width,height: 70).background(Color("blueThemeLight"))
+        .onAppear()
+        {
+            setting.showSearchWindow = false
+        }
+    }
+    func handleScane(result:Result<String, CodeScannerView.ScanError>)
+    {
+        self.showQRScanner = false
+        switch result {
+        case .success(let code):
+            let details = code.components(separatedBy: "\n")
+            guard details.count == 2 else {return}
+            
+        case .failure(let error):
+            print("Scaning failed: \(error)")
         
+        }
     }
 }
+
 
 
 struct pincodeBarView: View {

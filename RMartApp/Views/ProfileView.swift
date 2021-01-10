@@ -18,8 +18,8 @@ struct ProfileView: View {
     var body: some View {
         ZStack{
             VStack{
-                HeaderSearchDummyView()
-                Spacer(minLength:0)
+//                HeaderSearchDummyView()
+//                Spacer(minLength:0)
                 ScrollView(.vertical, showsIndicators: false, content: {
                     pincodeBarView()
                     Spacer(minLength:0)

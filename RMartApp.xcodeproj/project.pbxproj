@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97132AAC25A941C6008B793C /* searchProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97132AAB25A941C6008B793C /* searchProduct.swift */; };
 		97144F30259A784A009AAB73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F2F259A784A009AAB73 /* AppDelegate.swift */; };
 		97144F32259A784A009AAB73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F31259A784A009AAB73 /* SceneDelegate.swift */; };
 		97144F34259A784A009AAB73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97144F33259A784A009AAB73 /* ContentView.swift */; };
@@ -33,12 +34,15 @@
 		9765F98E25A788F600816BFF /* SearchedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9765F98D25A788F600816BFF /* SearchedContentView.swift */; };
 		9782035425A28D8400F21F42 /* CustomerServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782035325A28D8300F21F42 /* CustomerServiceView.swift */; };
 		9782035725A28EFF00F21F42 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782035625A28EFF00F21F42 /* GuideView.swift */; };
+		97AB974B25A9F18D007C2AD4 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 97AB974A25A9F18D007C2AD4 /* CodeScanner */; };
+		97AB974F25AA683A007C2AD4 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AB974E25AA683A007C2AD4 /* ProductDetailView.swift */; };
 		97AEC204259CFBF9007627E6 /* MyCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEC203259CFBF9007627E6 /* MyCartView.swift */; };
 		97AEC207259D55FA007627E6 /* MyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEC206259D55FA007627E6 /* MyWalletView.swift */; };
 		97FA550625A3CF96006A5587 /* ShopCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FA550525A3CF96006A5587 /* ShopCategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		97132AAB25A941C6008B793C /* searchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchProduct.swift; sourceTree = "<group>"; };
 		97144F2C259A784A009AAB73 /* RMartApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RMartApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97144F2F259A784A009AAB73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97144F31259A784A009AAB73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 		9765F98D25A788F600816BFF /* SearchedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedContentView.swift; sourceTree = "<group>"; };
 		9782035325A28D8300F21F42 /* CustomerServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceView.swift; sourceTree = "<group>"; };
 		9782035625A28EFF00F21F42 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		97AB974E25AA683A007C2AD4 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		97AEC203259CFBF9007627E6 /* MyCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCartView.swift; sourceTree = "<group>"; };
 		97AEC206259D55FA007627E6 /* MyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletView.swift; sourceTree = "<group>"; };
 		97FA550525A3CF96006A5587 /* ShopCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoryView.swift; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97AB974B25A9F18D007C2AD4 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +153,8 @@
 				9765F98525A6490000816BFF /* TestView.swift */,
 				9765F98A25A76F3900816BFF /* HeaderSearchView.swift */,
 				9765F98D25A788F600816BFF /* SearchedContentView.swift */,
+				97132AAB25A941C6008B793C /* searchProduct.swift */,
+				97AB974E25AA683A007C2AD4 /* ProductDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +184,9 @@
 			dependencies = (
 			);
 			name = RMartApp;
+			packageProductDependencies = (
+				97AB974A25A9F18D007C2AD4 /* CodeScanner */,
+			);
 			productName = RMartApp;
 			productReference = 97144F2C259A784A009AAB73 /* RMartApp.app */;
 			productType = "com.apple.product-type.application";
@@ -203,6 +214,9 @@
 				Base,
 			);
 			mainGroup = 97144F23259A784A009AAB73;
+			packageReferences = (
+				97AB974925A9F18D007C2AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = 97144F2D259A784A009AAB73 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,6 +256,7 @@
 				9782035425A28D8400F21F42 /* CustomerServiceView.swift in Sources */,
 				9740633B259FF6A500781119 /* MySubscriptionView.swift in Sources */,
 				97144F30259A784A009AAB73 /* AppDelegate.swift in Sources */,
+				97132AAC25A941C6008B793C /* searchProduct.swift in Sources */,
 				97144F5E259A78CE009AAB73 /* Constant.swift in Sources */,
 				97144F51259A78C3009AAB73 /* UserSlideMenuView.swift in Sources */,
 				97144F77259AC1EE009AAB73 /* DeliveryAddressView.swift in Sources */,
@@ -256,6 +271,7 @@
 				9782035725A28EFF00F21F42 /* GuideView.swift in Sources */,
 				97144F32259A784A009AAB73 /* SceneDelegate.swift in Sources */,
 				97144F34259A784A009AAB73 /* ContentView.swift in Sources */,
+				97AB974F25AA683A007C2AD4 /* ProductDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,17 +410,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RMartApp/Preview Content\"";
 				DEVELOPMENT_TEAM = T749PR32HB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RMartApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rajaygms.RMartApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -415,17 +434,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RMartApp/Preview Content\"";
 				DEVELOPMENT_TEAM = T749PR32HB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RMartApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rajaygms.RMartApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -453,6 +475,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97AB974925A9F18D007C2AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97AB974A25A9F18D007C2AD4 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97AB974925A9F18D007C2AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		97144F35259A784A009AAB73 /* RMartApp.xcdatamodeld */ = {

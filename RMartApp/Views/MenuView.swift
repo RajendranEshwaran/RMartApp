@@ -12,23 +12,19 @@ struct MenuView: View {
    
     var body: some View {
         VStack{
-//            VStack(){
-//
-//
-//                HStack{
-//
-//                    Image(systemName: "person.crop.circle").foregroundColor(.white)
-//                    Text("User Name")
-//                    Spacer(minLength: 200)
-//                Button(action: {}, label: {
-//                    Image(systemName: "xmark")
-//                })
-//
-//                }
-//            }.padding(.top,100)
-//            .edgesIgnoringSafeArea(.top)
-            
+           
             Spacer(minLength: 50)
+                HStack{
+                    Image(systemName: "person.crop.circle").foregroundColor(.white)
+                    Text("User Name")
+                    Spacer(minLength: 0)
+                Button(action: {}, label: {
+                    Image(systemName: "xmark")
+                })
+
+                }
+          
+            
            
             Button(action: { withAnimation{
                 setting.showMenu = false

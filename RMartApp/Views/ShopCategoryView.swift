@@ -14,7 +14,9 @@ struct ShopCategoryView: View {
         
             VStack
             {
-            HeaderSearchDummyView()
+
+           // HeaderSearchDummyView()
+           //     Spacer(minLength:0)
             ScrollView(.vertical, showsIndicators: false, content: {
             //Mark:- Header panel and searchbar
             pincodeBarView()
@@ -33,9 +35,9 @@ struct ShopCategoryView: View {
                             
                     }
                    
-                }.listStyle(GroupedListStyle()).frame(width:UIScreen.main.bounds.width,height:UIScreen.main.bounds.height)
+                }.frame(width:UIScreen.main.bounds.width,height:UIScreen.main.bounds.height).listStyle(GroupedListStyle())
             }
-        })//.frame(height:UIScreen.main.bounds.height).background(Color.gray.opacity(0.2)).padding(.top,125)
+        }).frame(height:UIScreen.main.bounds.height).background(Color.gray.opacity(0.2)).padding(.top,115)
                 Spacer(minLength:0)
                     .edgesIgnoringSafeArea(.all)
             }

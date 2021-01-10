@@ -12,8 +12,8 @@ struct AllOffersView: View {
     var body: some View {
         
         //Mark:- Header panel and searchbar
-        HeaderSearchDummyView()
-        Spacer(minLength:0)
+      //  HeaderSearchDummyView()
+      //  Spacer(minLength:0)
         ScrollView(.vertical, showsIndicators: false, content: {
             pincodeBarView()
             Spacer(minLength:0)
@@ -37,7 +37,7 @@ struct AllOffersView: View {
                 Text("@2020 All rights are reserved")
             }.frame(width:UIScreen.main.bounds.width,height: 50).background(Color.white.opacity(1))
             
-        }).background(Color.gray.opacity(0.2))//.padding(.top,115)//.frame(height:UIScreen.main.bounds.height).background(Color.green.opacity(0.2))
+        }).frame(height:UIScreen.main.bounds.height).background(Color.green.opacity(0.2)).padding(.top,115)
         .edgesIgnoringSafeArea(.all)
     }
 }

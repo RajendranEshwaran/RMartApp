@@ -13,8 +13,8 @@ struct MyOrdersView: View {
     @Binding var isOrderHistoryShown:Bool
     var body: some View {
         //Mark:- Header panel and searchbar
-        HeaderSearchDummyView()
-        Spacer(minLength:0)
+        //HeaderSearchDummyView()
+        //Spacer(minLength:0)
         ScrollView(.vertical, showsIndicators: false, content: {
             
             pincodeBarView()
@@ -35,7 +35,7 @@ struct MyOrdersView: View {
             else{
                 ReturnsView()
             }
-        })//.frame(height:UIScreen.main.bounds.height).padding(.top,110)
+        }).frame(height:UIScreen.main.bounds.height).padding(.top,110)
         .edgesIgnoringSafeArea(.all)
     }
     

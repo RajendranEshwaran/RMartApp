@@ -11,8 +11,8 @@ struct MyWalletView: View {
     @State private var pincode:String = "19355"
     var body: some View {
         //Mark:- Header panel and searchbar
-            HeaderSearchDummyView()
-            Spacer(minLength:0)
+         //   HeaderSearchDummyView()
+         //   Spacer(minLength:0)
         ScrollView(.vertical, showsIndicators: false, content: {
             pincodeBarView()
             Spacer(minLength:0)
@@ -30,7 +30,7 @@ struct MyWalletView: View {
                     }.frame(width:UIScreen.main.bounds.width,height:UIScreen.main.bounds.height/6)
                 }
                 
-            })//.frame(height:UIScreen.main.bounds.height).padding(.top,110)
+            }).frame(height:UIScreen.main.bounds.height).padding(.top,110)
         .edgesIgnoringSafeArea(.all)
     }
     
