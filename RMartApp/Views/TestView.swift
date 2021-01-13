@@ -9,7 +9,28 @@ import SwiftUI
 
 struct TestView: View {
     var body: some View {
-        LocationPopupView1()
+        //LocationPopupView1()
+        test1()
+    }
+}
+struct test1:View {
+    var body: some View
+    {
+        HStack{
+            ZStack{
+                Image("test1").resizable()
+                    .frame(width: 120, height: 150, alignment: .leading).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 100))
+                Image("offers")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipShape(Circle())
+                    .frame(width: 30, height: 30, alignment: .leading)
+                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 100))
+            }
+            
+           
+            
+        }
     }
 }
 

@@ -21,17 +21,23 @@ struct HomeContentView: View {
             HeaderSearchView()
             Spacer(minLength:0)
             ScrollView(.vertical, showsIndicators: false, content: {
-                pincodeBarView()
+                HStack{
+                    // Any news advertisement.....
+                }.frame(width: UIScreen.main.bounds.width, height: 30).background(Color("blueTheme"))
                 Spacer(minLength: 0)
                 // Category portion
                 ScrollView(.horizontal,showsIndicators:false) {
                     HStack(spacing: 20) {
-                        ForEach(setting.categoryArray, id: \.self) { categoryItem in
+                        ForEach(0..<setting.categoryArray.count) { categoryItemIndex in
                             VStack{
-                                Spacer(minLength:0)
-                            Circle().fill(Color("blueTheme")).frame(width:80,height:80)
-                                Spacer(minLength:0)
-                                Text("\(categoryItem)").foregroundColor(.black).font(.system(size: 12))
+                                ZStack{
+                                    Spacer(minLength:0)
+                                    Circle().fill(Color("blueTheme")).frame(width:80,height:80)
+                                    Image("category2").resizable().aspectRatio(contentMode: .fit).contentShape(Circle()).frame(width:40,height:40,alignment: .center).tag(categoryItemIndex)
+                                        .onTapGesture { self.gotoCategoryView(index: categoryItemIndex) }
+                                    Spacer(minLength:0)
+                                }
+                                Text("\(setting.categoryArray[categoryItemIndex])").foregroundColor(.black).font(.system(size: 12))
                             }
                         }
                         
@@ -82,6 +88,10 @@ struct HomeContentView: View {
                 
             })
         }
+    }
+    func gotoCategoryView(index:Int)
+    {
+        print("category index \(index)")
     }
 }
 

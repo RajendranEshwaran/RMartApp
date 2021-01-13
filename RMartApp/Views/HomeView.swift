@@ -96,82 +96,99 @@ struct MainView: View {
     @EnvironmentObject var setting: Settings
     @State var selection: Int? = nil
     var body: some View {
-        
+       
         VStack{
-            HomeContentView()
-//            if !setting.showMenu
-//            {
-//                HomeContentView()
-//            }
-            if(!setting.showLocation)
-            {
-                withAnimation(.easeIn){
-                    LocationPopupView()
-                }
-            }
-            if(setting.showSign)
-            {
-                
-                NavigationLink(destination: ProfileView(), isActive: $setting.showSign) {
-                }
-                
-            }
-            if(setting.showWallet)
-            {
-                NavigationLink(destination: MyWalletView(), isActive: $setting.showWallet) {
-                }
-            }
-            if(setting.showAllOffers)
-            {
-                NavigationLink(destination:AllOffersView(),isActive:$setting.showAllOffers)
-                {
+            Group{
+                HomeContentView()
+                Group{
+                    if(!setting.showLocation)
+                    {
+                        withAnimation(.easeIn){
+                            LocationPopupView()
+                        }
+                    }
+                    if(setting.showSign)
+                    {
+                        if(setting.isSigned )
+                        {
+                            NavigationLink(destination: ProfileView(), isActive: $setting.showSign) {
+                            }
+                        }
+                        else
+                        {
+                            NavigationLink(destination: SignInView(), isActive: $setting.showSign) {
+                            }
+                        }
+                    }
+                    if(setting.showMyAccount)
+                    {
+                        if(setting.isSigned)
+                        {
+                            NavigationLink(destination: ProfileView(), isActive: $setting.showMyAccount) {
+                            }
+                        }
+                        else
+                        {
+                            NavigationLink(destination: SignInView(), isActive: $setting.showMyAccount) {
+                            }
+                        }
+                    }
+                    if(setting.showWallet)
+                    {
+                        NavigationLink(destination: MyWalletView(), isActive: $setting.showWallet) {
+                        }
+                    }
+                    if(setting.showAllOffers)
+                    {
+                        NavigationLink(destination:AllOffersView(),isActive:$setting.showAllOffers)
+                        {
+                            
+                        }
+                    }
+                    if(setting.showCustomerService)
+                    {
+                        NavigationLink(destination:CustomerServiceView(),isActive:$setting.showCustomerService)
+                        {
+                            
+                        }
+                    }
                     
-                }
-            }
-            if(setting.showCustomerService)
-            {
-                NavigationLink(destination:CustomerServiceView(),isActive:$setting.showCustomerService)
-                {
+                    if(setting.showGuide)
+                    {
+                        NavigationLink(destination:GuideView(),isActive:$setting.showGuide)
+                        {
+                            
+                        }
+                    }
                     
-                }
-            }
-            
-            if(setting.showGuide)
-            {
-                NavigationLink(destination:GuideView(),isActive:$setting.showGuide)
-                {
+                    if(setting.showMyOrders)
+                    {
+                        NavigationLink(destination:MyOrdersView(isOrderHistoryShown: .constant(false)),isActive:$setting.showMyOrders)
+                        {
+                            
+                        }
+                    }
                     
-                }
-            }
-            
-            if(setting.showMyOrders)
-            {
-                NavigationLink(destination:MyOrdersView(isOrderHistoryShown: .constant(false)),isActive:$setting.showMyOrders)
-                {
+                    if(setting.showMySubscription)
+                    {
+                        NavigationLink(destination:MySubscriptionView(),isActive:$setting.showMySubscription)
+                        {
+                            
+                        }
+                    }
                     
-                }
-            }
-            
-            if(setting.showMySubscription)
-            {
-                NavigationLink(destination:MySubscriptionView(),isActive:$setting.showMySubscription)
-                {
-                    
-                }
-            }
-            
-            if(setting.showShopCategory)
-            {
-                NavigationLink(destination:ShopCategoryView(),isActive:$setting.showShopCategory)
-                {
-
+                    if(setting.showShopCategory)
+                    {
+                        NavigationLink(destination:ShopCategoryView(),isActive:$setting.showShopCategory)
+                        {
+                            
+                        }
+                    }
                 }
             }
         }
         .onAppear(){
-            
             resetToggle()
-            
         }
     }
     func resetToggle()
@@ -188,6 +205,7 @@ struct MainView: View {
         setting.showShopCategory = false
         setting.showLocation = true
         setting.showSearchWindow = false
+        setting.showMyAccount = false
     }
 }
 

@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qMw-J7-Xlg">
-                                <rect key="frame" x="0.0" y="-9" width="414" height="919"/>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="qMw-J7-Xlg">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gmart2" translatesAutoresizingMaskIntoConstraints="NO" id="fl5-LN-C2j">
                                         <rect key="frame" x="78" y="303" width="240" height="206"/>
@@ -30,10 +30,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qMw-J7-Xlg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6Yc-d1-4X3"/>
-                            <constraint firstItem="qMw-J7-Xlg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DJC-AM-OGU"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qMw-J7-Xlg" secondAttribute="bottom" id="Sra-LI-81n"/>
-                            <constraint firstItem="qMw-J7-Xlg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yut-tQ-CkQ"/>
+                            <constraint firstAttribute="bottom" secondItem="qMw-J7-Xlg" secondAttribute="bottom" id="c5O-DH-FjE"/>
+                            <constraint firstItem="qMw-J7-Xlg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="g6C-oi-xO4"/>
+                            <constraint firstItem="qMw-J7-Xlg" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ihg-6f-t9i"/>
+                            <constraint firstItem="qMw-J7-Xlg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nLD-Qp-zYB"/>
                         </constraints>
                     </view>
                 </viewController>

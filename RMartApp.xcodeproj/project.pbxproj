@@ -34,8 +34,10 @@
 		9765F98E25A788F600816BFF /* SearchedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9765F98D25A788F600816BFF /* SearchedContentView.swift */; };
 		9782035425A28D8400F21F42 /* CustomerServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782035325A28D8300F21F42 /* CustomerServiceView.swift */; };
 		9782035725A28EFF00F21F42 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782035625A28EFF00F21F42 /* GuideView.swift */; };
+		97A9E17125AE2368001E708F /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 97A9E17025AE2367001E708F /* iPhoneNumberField */; };
 		97AB974B25A9F18D007C2AD4 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 97AB974A25A9F18D007C2AD4 /* CodeScanner */; };
 		97AB974F25AA683A007C2AD4 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AB974E25AA683A007C2AD4 /* ProductDetailView.swift */; };
+		97AB975225AD15A0007C2AD4 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AB975125AD15A0007C2AD4 /* CategoryItemView.swift */; };
 		97AEC204259CFBF9007627E6 /* MyCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEC203259CFBF9007627E6 /* MyCartView.swift */; };
 		97AEC207259D55FA007627E6 /* MyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEC206259D55FA007627E6 /* MyWalletView.swift */; };
 		97FA550625A3CF96006A5587 /* ShopCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FA550525A3CF96006A5587 /* ShopCategoryView.swift */; };
@@ -72,6 +74,7 @@
 		9782035325A28D8300F21F42 /* CustomerServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceView.swift; sourceTree = "<group>"; };
 		9782035625A28EFF00F21F42 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		97AB974E25AA683A007C2AD4 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		97AB975125AD15A0007C2AD4 /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
 		97AEC203259CFBF9007627E6 /* MyCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCartView.swift; sourceTree = "<group>"; };
 		97AEC206259D55FA007627E6 /* MyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletView.swift; sourceTree = "<group>"; };
 		97FA550525A3CF96006A5587 /* ShopCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoryView.swift; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97AB974B25A9F18D007C2AD4 /* CodeScanner in Frameworks */,
+				97A9E17125AE2368001E708F /* iPhoneNumberField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +159,7 @@
 				9765F98D25A788F600816BFF /* SearchedContentView.swift */,
 				97132AAB25A941C6008B793C /* searchProduct.swift */,
 				97AB974E25AA683A007C2AD4 /* ProductDetailView.swift */,
+				97AB975125AD15A0007C2AD4 /* CategoryItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 			name = RMartApp;
 			packageProductDependencies = (
 				97AB974A25A9F18D007C2AD4 /* CodeScanner */,
+				97A9E17025AE2367001E708F /* iPhoneNumberField */,
 			);
 			productName = RMartApp;
 			productReference = 97144F2C259A784A009AAB73 /* RMartApp.app */;
@@ -216,6 +222,7 @@
 			mainGroup = 97144F23259A784A009AAB73;
 			packageReferences = (
 				97AB974925A9F18D007C2AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				97A9E16F25AE2367001E708F /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = 97144F2D259A784A009AAB73 /* Products */;
 			projectDirPath = "";
@@ -262,6 +269,7 @@
 				97144F77259AC1EE009AAB73 /* DeliveryAddressView.swift in Sources */,
 				97144F57259A78C3009AAB73 /* HeaderView.swift in Sources */,
 				97144F52259A78C3009AAB73 /* SignInView.swift in Sources */,
+				97AB975225AD15A0007C2AD4 /* CategoryItemView.swift in Sources */,
 				9765F98E25A788F600816BFF /* SearchedContentView.swift in Sources */,
 				97AEC207259D55FA007627E6 /* MyWalletView.swift in Sources */,
 				97144F58259A78C3009AAB73 /* HomeView.swift in Sources */,
@@ -477,6 +485,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		97A9E16F25AE2367001E708F /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.4;
+			};
+		};
 		97AB974925A9F18D007C2AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/CodeScanner";
@@ -488,6 +504,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		97A9E17025AE2367001E708F /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97A9E16F25AE2367001E708F /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
+		};
 		97AB974A25A9F18D007C2AD4 /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 97AB974925A9F18D007C2AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */;

@@ -20,8 +20,10 @@ class Settings: ObservableObject{
     @Published var showMySubscription:Bool = false
     @Published var showShopCategory:Bool = false
     @Published var showLocation:Bool = false
-    @Published var showSearchWindow = false
+    @Published var showSearchWindow:Bool = false
+    @Published var showMyAccount:Bool = false
     @Published var categoryArray: [String] = ["All Categories","Bevarages","Snacks","Grocery","Dairy & Backery","Veggies","Fruits","Frozen Foods","NonVeg","Canned Foods","Baking Foods","Clean Ups","Stationaries","Personal Care","Fashion","Jewlerry","Kids Wear","Womens Wear","Mens Wear","Pets"]
+    @Published var isSigned : Bool = false
 }
 
 class NumbersOnly: ObservableObject {
