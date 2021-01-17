@@ -33,7 +33,7 @@ struct HomeContentView: View {
                                 ZStack{
                                     Spacer(minLength:0)
                                     Circle().fill(Color("blueTheme")).frame(width:80,height:80)
-                                    Image("category2").resizable().aspectRatio(contentMode: .fit).contentShape(Circle()).frame(width:40,height:40,alignment: .center).tag(categoryItemIndex)
+                                    Image(setting.categoryIconsArray[categoryItemIndex]).resizable().aspectRatio(contentMode: .fit).contentShape(Circle()).frame(width:40,height:40,alignment: .center).tag(categoryItemIndex)
                                         .onTapGesture { self.gotoCategoryView(index: categoryItemIndex) }
                                     Spacer(minLength:0)
                                 }

@@ -10,6 +10,7 @@ import Foundation
  open class CommonKeys{
     
     static let shopFromTopCategories = "shopFromTopCategories"
+    static let empty = ""
 }
 
 public enum DealsKeys:String{

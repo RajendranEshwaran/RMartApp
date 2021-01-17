@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreLocation
+import MapKit
 
 struct DeliveryAddressView:View {
     @State private var pincode:String = "19355"
@@ -13,6 +15,7 @@ struct DeliveryAddressView:View {
     @State var isChecked:Bool = false
     @State var isAdd:Bool = false
     @State var isModify:Bool = false
+    @State private var isAddFromMap:Bool = false
     var body: some View{
         ScrollView(.vertical, showsIndicators: false, content: {
             VStack{
@@ -73,7 +76,7 @@ struct DeliveryAddressView:View {
                 ZStack{
                     Color.black.opacity(0.05).edgesIgnoringSafeArea(.all)
                     VStack{
-                        NewAddressView(isAdd: self.$isAdd, isModify: self.$isModify).transition(.slide)
+                        NewAddressView(isAdd: self.$isAdd, isModify: self.$isModify, isAddFromMap: $isAddFromMap).transition(.slide)
                     }
                 }
             }
@@ -83,6 +86,17 @@ struct DeliveryAddressView:View {
                     Color.black.opacity(0.05).edgesIgnoringSafeArea(.all)
                     VStack{
                         ModifyAddressView(isModify: self.$isModify).transition(.slide)
+                    }
+                }
+            }
+            
+            if(self.isAddFromMap)
+            {
+                ZStack{
+                    Color.black.opacity(0.05).edgesIgnoringSafeArea(.all)
+                    VStack{
+                        
+                        AddressAddFromMapView(isAddFromMap: self.$isAddFromMap).transition(.slide)
                     }
                 }
             }
@@ -101,53 +115,112 @@ struct DeliveryAddressView_Previews: PreviewProvider {
 struct NewAddressView:View {
     @Binding var isAdd:Bool
     @Binding var isModify:Bool
+    @Binding var isAddFromMap:Bool
     @State private var location:String = ""
+    @State private var searchText = ""
+    @State private var showCancelButton: Bool = false
+    @State private var showLocationAlert:Bool = false
+    
+    
+    @Environment(\.presentationMode) var presentationMode
     var body: some View
     {
-        VStack{
-            HStack{
-                Button(action: {
-                    self.isAdd = false
-                }, label: {
-                    Image(systemName: "xmark")
-                })
-                Spacer()
-                Text("Select Address").bold().foregroundColor(Color("blueTheme"))
-                Spacer()
-            }
-            Divider()
-            TextField("Search for your location", text: $location).frame(width: UIScreen.main.bounds.width - 50, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
-            Divider()
-            Text("or")
-            Divider()
-            Button(action: {
-                
-            }, label: {
-                HStack{
-                Image(systemName: "mappin")
-                    Text("Select your location via map")
+        Group{
+            VStack{
+                Group{
+                    HStack{
+                        Button(action: {
+                            self.isAdd = false
+                        }, label: {
+                            Image(systemName: "xmark")
+                        })
+                        Spacer()
+                        Text("Select Address").bold().foregroundColor(Color("blueTheme"))
+                        Spacer()
+                    }
                 }
-            })
-            Divider()
-            Button(action: {
-                self.isModify.toggle()
-                self.isAdd = false
-            }, label: {
-                Text("+ Type your address")
-            })
-           
-        Spacer()
-        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
-        
+                Divider()
+                Group{
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        
+                        TextField("Search for your location", text: $searchText, onEditingChanged: { isEditing in
+                            self.showCancelButton = true
+                        }, onCommit: {
+                            print("onCommit")
+                        }).foregroundColor(.primary).frame(width: UIScreen.main.bounds.width - 130, height: 40)
+                        
+                        Button(action: {
+                            self.searchText = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
+                        }
+                        
+                        if showCancelButton  {
+                            Button("Cancel") {
+                                UIApplication.shared.endEditing(true) // this must be placed before the other commands here
+                                self.searchText = ""
+                                self.showCancelButton = false
+                            }
+                            .foregroundColor(Color(.systemBlue))
+                        }
+                        
+                    }
+                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                    .foregroundColor(.secondary)
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(10.0)
+                    
+                    Divider()
+                    Text("or")
+                    Divider()
+                    Button(action: {
+                        self.showLocationAlert.toggle()
+                        
+                    }, label: {
+                        HStack{
+                            Image("currentlocation1").resizable().aspectRatio(contentMode: .fit).contentShape(Circle()).frame(width: 40, height: 40)
+                            Text("Use your current location")
+                        }
+                    }).alert(isPresented: $showLocationAlert) { () -> Alert in
+                        let primaryButton = Alert.Button.default(Text("Ok")) {
+                            self.isAddFromMap.toggle()
+                            
+                            self.showLocationAlert = false
+                            self.isAdd = false
+                        }
+                        let secondaryButton = Alert.Button.cancel(Text("Don't Allow")) {
+                            print("secondary button pressed")
+                            self.showLocationAlert = false
+                        }
+                        return Alert(title: Text("Hey"), message: Text("RMart require current location"), primaryButton: primaryButton, secondaryButton: secondaryButton)
+                    }
+                    Divider()
+                    Button(action: {
+                        self.isModify.toggle()
+                        self.isAdd = false
+                    }, label: {
+                        Text("+ Add your address manually")
+                    })
+                    
+                    Spacer()
+                    
+                }
+                
+            }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
+            
+        }
     }
 }
 
 struct ModifyAddressView : View {
     @State private var cName:String = ""
     @Binding var isModify:Bool
+    
     var body: some View
     {
         VStack{
+            
             HStack{
                 Button(action: {
                     self.isModify = false
@@ -202,4 +275,87 @@ struct ModifyAddressView : View {
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
         
     }
+}
+
+struct AddressAddFromMapView :View
+{
+    @Binding var isAddFromMap:Bool
+    @ObservedObject var lm = LocationManager()
+    var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
+    var longitude: String { return("\(lm.location?.longitude ?? 0)") }
+    var placemark: String { return("\(lm.placemark?.description ?? "XXX")") }
+    var status: String    { return("\(lm.status)") }
+    @State var lat: Double = 0.0
+    @State var lon: Double = 0.0
+    @State private var cName:String = ""
+    @State var landmarks: [Landmark] = [
+    ]
+    @State var selectedLandmark: Landmark? = nil
+    var body: some View
+    {
+        ScrollView(.vertical, showsIndicators: true, content: {
+           
+            VStack{
+                Spacer()
+                HStack{
+                    Button(action: {
+                        self.isAddFromMap = false
+                    }, label: {
+                        Image(systemName: "xmark")
+                    })
+                    Spacer()
+                    Text("Select Address").bold().foregroundColor(Color("blueTheme"))
+                    Spacer()
+                }
+                Divider()
+                VStack{
+                    MapView(landmarks: $landmarks,
+                            selectedLandmark: $selectedLandmark,lat: $lat,lon: $lon)
+                        .edgesIgnoringSafeArea(.vertical)
+                    
+                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3).background(Color.gray)
+                VStack{
+                    Text("Fetched Map Address").frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle()).multilineTextAlignment(.leading).font(.system(size: 12))
+
+                    TextField("Phone Number", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("Apt Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("Apt No", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("Land mark", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("City Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("State Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("Pincode", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Button(action: {}, label: {
+                        Text("Save Address").foregroundColor(Color("blueTheme")).bold().frame(width: UIScreen.main.bounds.width - 50, height: 40)
+                    }).overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(Color("blueTheme"), lineWidth: 2))
+                }
+                Spacer()
+                
+            }
+        }).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        .onAppear(){
+            lat = Double( self.latitude) ?? 0.0
+            lon = Double( self.longitude) ?? 0.0
+            landmarks.append(Landmark(name: "current location", location: .init(latitude: Double( self.latitude) ?? 0.0, longitude: Double( self.longitude) ?? 0.0)))
+            print("location : \(self.latitude), \(self.longitude), \(self.placemark), \(self.status)")
+        }
+    }
+}
+
+struct Landmark: Equatable {
+    static func ==(lhs: Landmark, rhs: Landmark) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    let id = UUID().uuidString
+    let name: String
+    let location: CLLocationCoordinate2D
 }

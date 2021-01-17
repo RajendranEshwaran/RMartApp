@@ -10,7 +10,10 @@ import SwiftUI
 struct TestView: View {
     var body: some View {
         //LocationPopupView1()
-        test1()
+        //test1()
+       // AddressAddFromMapViewTest()
+        editviewTest2()
+        
     }
 }
 struct test1:View {
@@ -85,5 +88,136 @@ struct LocationPopupView1: View
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
         TestView()
+    }
+}
+
+struct AddressAddFromMapViewTest :View
+{
+    //@Binding var isAddFromMap:Bool
+    @State private var cName:String = ""
+    var body: some View
+    {
+        VStack{
+            HStack{
+                Button(action: {
+                    //self.isAddFromMap = false
+                }, label: {
+                    Image(systemName: "xmark")
+                })
+                Spacer()
+                Text("Select Address").bold().foregroundColor(Color("blueTheme"))
+                Spacer()
+            }
+            Divider()
+            VStack{
+                
+                
+                
+            }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3).background(Color.gray)
+            VStack{
+                Text("Fetched Map Address").frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle()).multilineTextAlignment(.leading).font(.system(size: 12))
+
+                TextField("Phone Number", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Apt Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Apt No", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Land mark", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("City Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("State Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Pincode", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Button(action: {}, label: {
+                    Text("Save Address").foregroundColor(Color("blueTheme")).bold().frame(width: UIScreen.main.bounds.width - 50, height: 40)
+                }).overlay(
+                    RoundedRectangle(cornerRadius: 25)
+                        .stroke(Color("blueTheme"), lineWidth: 2))
+            }
+            Spacer()
+            
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
+        
+    }
+}
+
+struct editviewTest2 :View
+{
+    var dateFormatter: DateFormatter {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            return formatter
+        }
+
+        @State private var birthDate = Date()
+    @State private var cName:String = ""
+    @State var showDatePicker = false
+    @State var showMenuPicker = false
+    @State var selectedDate:String = ""
+    var body: some View
+    {
+        VStack{
+            HStack{
+                Button(action: {
+                    //self.isAddFromMap = false
+                }, label: {
+                    Image(systemName: "xmark")
+                })
+                Spacer()
+                Text("Edit Profile").bold().foregroundColor(Color("blueTheme"))
+                Spacer()
+            }
+            Divider()
+
+            VStack{
+
+                TextField("Phone Number", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Email ID", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("First Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Last Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                TextField("dob", text: $selectedDate).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                .onTapGesture {
+                    showDatePicker.toggle()
+                }
+                TextField("Gender", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                    .contextMenu(ContextMenu(menuItems: {
+                        Button(action: {}, label: {
+                            Text("Male")
+                        })
+                        Button(action: {}, label: {
+                            Text("female")
+                        })
+                        Button(action: {}, label: {
+                            Text("Others")
+                        })
+                    }))
+                
+                Button(action: {}, label: {
+                    Text("Save Changes").foregroundColor(Color("blueTheme")).bold().frame(width: UIScreen.main.bounds.width - 50, height: 40)
+                }).overlay(
+                    RoundedRectangle(cornerRadius: 25)
+                        .stroke(Color("blueTheme"), lineWidth: 2))
+                if self.showDatePicker {
+                    DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
+                                   // Text("Select a date")
+//                        let formatter1 = DateFormatter()
+//                        formatter1.dateStyle = .short
+//                        print(formatter1.string(from: birthDate))
+//                        selectedDate = formatter1.string(from: birthDate)
+                    }.frame(width:400,height: 400)
+                }
+                
+            }
+            Spacer()
+            
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
+        
     }
 }

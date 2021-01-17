@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
+import CoreData
 
 class Settings: ObservableObject{
     
@@ -22,8 +25,17 @@ class Settings: ObservableObject{
     @Published var showLocation:Bool = false
     @Published var showSearchWindow:Bool = false
     @Published var showMyAccount:Bool = false
-    @Published var categoryArray: [String] = ["All Categories","Bevarages","Snacks","Grocery","Dairy & Backery","Veggies","Fruits","Frozen Foods","NonVeg","Canned Foods","Baking Foods","Clean Ups","Stationaries","Personal Care","Fashion","Jewlerry","Kids Wear","Womens Wear","Mens Wear","Pets"]
+    @Published var categoryArray: [String] = ["All Categories","Bevarages","Grocery","Dairy & Backery","Veggies","Fruits","Meat","Clean Ups","Stationaries","Personal Care","Fashion","Jewlerry","Kids Wear","Womens Wear","Mens Wear","Pets"]
+    @Published var categoryIconsArray: [String] = ["category3","beverages","grocery","dairy-products","vegetable","fruits-1","meat","cleaning","stationary","personal-care","fashion","jewelry","baby-clothes","woman-clothes","men-fashion","pets"]
     @Published var isSigned : Bool = false
+    
+    @Published var firstName : String = ""
+    @Published var lastName : String = ""
+    @Published var gender : String = ""
+    @Published var dob : Date?
+    @Published var phoneNumber : String = ""
+    @Published var emailId : String?
+    
 }
 
 class NumbersOnly: ObservableObject {
@@ -37,3 +49,4 @@ class NumbersOnly: ObservableObject {
         }
     }
 }
+

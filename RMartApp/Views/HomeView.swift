@@ -9,12 +9,14 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    
     @State private var searchText:String = ""
     @State var isDrawerOpen: Bool = false
     @State var isCartOpen: Bool = false
     //@State var index = "Home"
     @EnvironmentObject var setting: Settings
+    @State private var phoneNumber:String = ""
+    
+    @ObservedObject var userVM = UserDataListViewModel()
     var body: some View {
         
         let drag = DragGesture()
@@ -29,7 +31,9 @@ struct HomeView: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-                    MainView()
+                    MainView().onAppear(){//readPhoneNumber()
+                        refreshData()
+                    }
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .offset(x: setting.showMenu ? geometry.size.width/2 : 0)
                         .disabled(setting.showMenu ? true : false)
@@ -81,7 +85,22 @@ struct HomeView: View {
             
         }
     }
-    
+    func refreshData() {
+        self.userVM.fetchAllUserProfile()
+        print("\(self.userVM.userProfile.count)")
+        if(self.userVM.userProfile.count > 0)
+        {
+            setting.isSigned = true
+        }
+    }
+    func readPhoneNumber()
+    {
+//        print(loginDetails[0].phoneNumber ?? "")
+//        if(!(loginDetails[0].phoneNumber?.isEmpty ?? true))
+//        {
+//            setting.isSigned = true
+//        }
+    }
 }
    
 struct HomeView_Previews: PreviewProvider {

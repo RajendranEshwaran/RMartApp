@@ -108,12 +108,12 @@ struct ProfileView: View {
             }
             if(self.isPresented)
             {
-                ZStack{
-                    Color.black.opacity(0.05).edgesIgnoringSafeArea(.all)
-                    VStack{
-                        EditView()
-                    }.animation(.easeIn)
-                }
+                    ZStack{
+                        Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
+                        VStack{
+                            EditView(isPresented: $isPresented).transition(.slide)
+                        }
+                    }
             }
             if(self.isAddressShown)
             {
@@ -153,27 +153,80 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 struct EditView: View {
-    var body: some View {
-
-        VStack{
-            
-            HStack{
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }
+    @Binding var isPresented :Bool
+    @State private var birthDate = Date()
+    @State private var cName:String = ""
+    @State var showDatePicker = false
+    @State var showMenuPicker = false
+    @State var selectedDate:String = ""
+    @State var seletedGender:String = ""
+    var body: some View
+    {
+        ScrollView(.vertical, showsIndicators: false, content: {
+            VStack{
                 
-                Button(action: {
-                    print("close ")
+                HStack{
+                    Button(action: {
+                        self.isPresented = false
+                    }, label: {
+                        Image(systemName: "xmark")
+                    })
+                    Spacer()
+                    Text("Edit Profile").bold().foregroundColor(Color("blueTheme"))
+                    Spacer()
+                }
+                Divider()
+                
+                VStack{
                     
-                }, label: {
+                    TextField("Phone Number", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
                     
-                    Image(systemName: "xmark.circle")
+                    TextField("Email ID", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
                     
-                }).padding(.top,5).padding(.leading,662)
-            }
-            
-            Spacer()
-          
-        }.background(Color.yellow)
-        .frame(width: 300,height: 500)
-       
+                    TextField("First Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("Last Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    DatePicker("Date of Birth", selection: $birthDate )
+                        .datePickerStyle(CompactDatePickerStyle()).frame(width: UIScreen.main.bounds.width - 30, height: 40)
+                    Menu {
+                        Button("Male", action: {self.seletedGender = "Male"})
+                        Button("Female", action: {self.seletedGender = "Female"})
+                        Button("Others", action: {self.seletedGender = "Others"})
+                    } label: {
+                        TextField("Gender", text: $seletedGender).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    Button(action: {}, label: {
+                        Text("Save Changes").foregroundColor(Color("blueTheme")).bold().frame(width: UIScreen.main.bounds.width - 50, height: 40)
+                    }).overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(Color("blueTheme"), lineWidth: 2))
+                    if self.showDatePicker {
+                        DatePicker("", selection: $birthDate )
+                            .datePickerStyle(CompactDatePickerStyle())
+                       
+                    }
+                    if(self.showMenuPicker)
+                    {
+                        Menu {
+                            Button("Cancel", action: {})
+                            Button("Search", action: {})
+                            Button("Add", action: {})
+                        } label: {
+                            Label("Create", systemImage: "plus.circle")
+                        }
+                    }
+                    
+                }
+                Spacer()
+                
+            }//.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
+        }).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
     }
 }
 

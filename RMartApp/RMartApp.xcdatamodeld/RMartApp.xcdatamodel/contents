@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H15" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="LoginEntity" representedClassName="LoginEntity" syncable="YES" codeGenerationType="class"/>
-    <entity name="UserDataEntity" representedClassName="UserDataEntity" syncable="YES" codeGenerationType="class"/>
+    <entity name="DeliveryAddress" representedClassName="DeliveryAddress" syncable="YES" codeGenerationType="class"/>
+    <entity name="LoginEntity" representedClassName="LoginEntity" syncable="YES">
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="UserDataEntity" representedClassName="UserDataEntity" syncable="YES">
+        <attribute name="dob" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="emailId" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
-        <element name="LoginEntity" positionX="-63" positionY="-18" width="128" height="43"/>
-        <element name="UserDataEntity" positionX="-54" positionY="-9" width="128" height="43"/>
+        <element name="DeliveryAddress" positionX="-54" positionY="36" width="128" height="43"/>
+        <element name="LoginEntity" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="UserDataEntity" positionX="-54" positionY="-9" width="128" height="148"/>
     </elements>
 </model>
