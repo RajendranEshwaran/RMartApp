@@ -94,7 +94,6 @@ struct HeaderSearchView: View {
                 }
                 
                 Button(action: {
-                    
                 }) {
                     Image(systemName: "line.horizontal.3")
                 }
@@ -111,6 +110,7 @@ struct HeaderSearchView: View {
             .foregroundColor(.secondary)
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10.0)
+            
             
         }.frame(width:UIScreen.main.bounds.width,height: 70).background(Color("blueThemeLight"))
         .onAppear()
@@ -136,12 +136,12 @@ struct HeaderSearchView: View {
 
 
 struct pincodeBarView: View {
-    @State private var pincode:String = "19355"
+    @EnvironmentObject var setting:Settings
     var body: some View
     {
         HStack{
             Image("map2").resizable().frame(width:15,height: 20).aspectRatio(contentMode: .fit)
-            Text("Deliver to \(pincode)").underline().foregroundColor(.white).font(.system(size: 12))
+            Text("Deliver to \(setting.pinCode)").underline().foregroundColor(.white).font(.system(size: 12))
             Spacer(minLength: 0)
         }.frame(width: UIScreen.main.bounds.width, height: 30).background(Color("blueTheme"))
     }

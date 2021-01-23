@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 
 struct DeliveryAddressView:View {
-    @State private var pincode:String = "19355"
+    @EnvironmentObject var setting:Settings
     @State private var select:Int = 1
     @State var isChecked:Bool = false
     @State var isAdd:Bool = false
@@ -19,7 +19,7 @@ struct DeliveryAddressView:View {
     var body: some View{
         ScrollView(.vertical, showsIndicators: false, content: {
             VStack{
-                Label("Deliver to \(pincode)", systemImage: "mappin").frame(width:UIScreen.main.bounds.width,height: 50).background(Color("blueThemeLight")).foregroundColor(.white).font(.title3)
+                Label("Deliver to \(setting.pinCode)", systemImage: "mappin").frame(width:UIScreen.main.bounds.width,height: 50).background(Color("blueThemeLight")).foregroundColor(.white).font(.title3)
             }
             Spacer(minLength:0)
             Text("Delivery Address").font(.title)

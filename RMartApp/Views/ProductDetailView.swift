@@ -18,9 +18,7 @@ struct ProductDetailView: View {
             VStack{
                 
             ScrollView(.vertical, showsIndicators: false, content: {
-                
                 pincodeBarView()
-                
                 VStack(alignment:.leading,spacing:10){
                     Text("Product Title").font(.headline).frame(maxWidth:.infinity,alignment: .leading).padding(.leading,10)
                     Text("Sub Title").font(.subheadline).padding(.leading,10)

@@ -11,6 +11,7 @@ import Foundation
     
     static let shopFromTopCategories = "shopFromTopCategories"
     static let empty = ""
+    static let viewAll = "VIEW ALL"
 }
 
 public enum DealsKeys:String{

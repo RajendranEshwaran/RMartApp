@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import Combine
 
 struct ProfileView: View {
     @State private var pincode:String = "19355"
@@ -15,6 +16,10 @@ struct ProfileView: View {
     @State private var isAddressShown:Bool = false
     @State private var isPaymentShown :Bool = false
     @State private var isOrderHistoryShown :Bool = false
+    
+    @ObservedObject var userVM = UserDataListViewModel()
+    private let vmManager = ViewModelManager()
+    @EnvironmentObject var setting:Settings
     var body: some View {
         ZStack{
             VStack{
@@ -37,11 +42,10 @@ struct ProfileView: View {
                             //Text("RMart User").bold().foregroundColor(.white)
                             Spacer(minLength: 20)
                             Button(action: {
-                                //                        withAnimation{
-                                //
-                                //                        }
-                                self.isPresented.toggle()
-                                
+                                withAnimation{
+                                    setting.showProfileEdit.toggle()
+                                    //setting.showMyAccount = false
+                                }
                             }, label: {
                                 Image(systemName: "pencil")
                                     .resizable().aspectRatio(contentMode: .fit).frame(width: 20, height: 20).foregroundColor(.white).padding(.trailing,10)
@@ -104,17 +108,23 @@ struct ProfileView: View {
                         Text("Contact Us").padding(.leading,10)
                     }).contentShape(Rectangle())
                     
-                })//.frame(height:UIScreen.main.bounds.height).padding(.top,115)
-            }
-            if(self.isPresented)
-            {
-                    ZStack{
-                        Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
-                        VStack{
-                            EditView(isPresented: $isPresented).transition(.slide)
+                })//.frame(height:UIScreen.main.bounds.height).padding(.bottom,10)
+                //.frame(height:UIScreen.main.bounds.height).padding(.top,0)//.background(Color.black)
+                
+                if(setting.showProfileEdit)
+                {
+                        ZStack{
+                            Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
+                            VStack{
+                                EditView(isPresented: self.$isPresented, vmManager:vmManager, userProfileLVM: userVM).transition(.slide)
+                            }
                         }
-                    }
+                }
+            }.onDisappear()
+            {
+                self.isPresented = false
             }
+            
             if(self.isAddressShown)
             {
                 NavigationLink(destination: DeliveryAddressView(), isActive: self.$isAddressShown) {
@@ -142,7 +152,6 @@ struct ProfileView: View {
             }
         }
         
-        
     }
 }
 
@@ -159,12 +168,23 @@ struct EditView: View {
         return formatter
     }
     @Binding var isPresented :Bool
+    var vmManager: ViewModelManager
+    var userProfileLVM: UserDataListViewModel
+    @EnvironmentObject var setting:Settings
+    @ObservedObject var userSetting = UserSettings()
+    
     @State private var birthDate = Date()
-    @State private var cName:String = ""
     @State var showDatePicker = false
     @State var showMenuPicker = false
     @State var selectedDate:String = ""
     @State var seletedGender:String = ""
+    
+    @State private var phoneNumber:String = ""
+    @State private var fName:String = ""
+    @State private var lName:String = ""
+    @State private var emailid:String = ""
+    @State private var pincode:String = ""
+    
     var body: some View
     {
         ScrollView(.vertical, showsIndicators: false, content: {
@@ -173,6 +193,7 @@ struct EditView: View {
                 HStack{
                     Button(action: {
                         self.isPresented = false
+                        setting.showProfileEdit = false
                     }, label: {
                         Image(systemName: "xmark")
                     })
@@ -182,26 +203,35 @@ struct EditView: View {
                 }
                 Divider()
                 
-                VStack{
-                    
-                    TextField("Phone Number", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    TextField("Email ID", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    TextField("First Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    TextField("Last Name", text: $cName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    DatePicker("Date of Birth", selection: $birthDate )
-                        .datePickerStyle(CompactDatePickerStyle()).frame(width: UIScreen.main.bounds.width - 30, height: 40)
-                    Menu {
-                        Button("Male", action: {self.seletedGender = "Male"})
-                        Button("Female", action: {self.seletedGender = "Female"})
-                        Button("Others", action: {self.seletedGender = "Others"})
-                    } label: {
-                        TextField("Gender", text: $seletedGender).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                /*VStack{
+                    ForEach(self.userProfileLVM.userProfile.indices , id:\.self) {idx  in
+                        TextField("Phone Number", text: $phoneNumber).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        TextField("Email ID", text: $emailid).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        TextField("First Name", text: $fName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        TextField("Last Name", text: $lName).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        DatePicker("Date of Birth", selection: $birthDate )
+                            .datePickerStyle(CompactDatePickerStyle()).frame(width: UIScreen.main.bounds.width - 30, height: 40)
+                        Menu {
+                            Button("Male", action: {self.seletedGender = "Male"})
+                            Button("Female", action: {self.seletedGender = "Female"})
+                            Button("Others", action: {self.seletedGender = "Others"})
+                        } label: {
+                            TextField("Gender", text: $seletedGender).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                        TextField("Pincode", text: $pincode, onEditingChanged: {_ in
+                            
+                        }, onCommit: {
+                            
+                        }).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
                     }
-                    Button(action: {}, label: {
+                    Button(action: {
+                        updateUserProfile()
+                        
+                    }, label: {
                         Text("Save Changes").foregroundColor(Color("blueTheme")).bold().frame(width: UIScreen.main.bounds.width - 50, height: 40)
                     }).overlay(
                         RoundedRectangle(cornerRadius: 25)
@@ -209,7 +239,7 @@ struct EditView: View {
                     if self.showDatePicker {
                         DatePicker("", selection: $birthDate )
                             .datePickerStyle(CompactDatePickerStyle())
-                       
+                        
                     }
                     if(self.showMenuPicker)
                     {
@@ -223,10 +253,35 @@ struct EditView: View {
                     }
                     
                 }
-                Spacer()
+                Spacer()*/
                 
             }//.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
         }).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
+        .onAppear(){
+            setting.showProfileEdit = false
+            /*setting.phoneNumber = userSetting.getUserPhoneNumber()
+            if(!setting.phoneNumber.isEmpty)
+            {
+                userProfileLVM.fetchUserProfileWithPhonenumber(phoneNumber: setting.phoneNumber)
+                for user in userProfileLVM.userProfile
+                {
+                    print(user.phoneNumber)
+                    self.phoneNumber = user.phoneNumber
+                    self.fName = user.firstName ?? ""
+                    self.lName = user.lastName ?? ""
+                    self.emailid = user.emailId ?? ""
+                    self.seletedGender = user.gender ?? ""
+                    self.birthDate = user.dob ?? Date()
+                    self.pincode = user.pinCode ?? ""
+                }
+            }*/
+        }
+    }
+    func updateUserProfile()
+    {
+        let userdata = UserProfileDataViewModel(id: UUID(), fname: self.fName, lname: self.lName, gender: self.seletedGender, dob: self.birthDate, phoneNumber: self.phoneNumber, emailId: self.emailid,pinCode: self.pincode)
+        vmManager.updateUserProfileData(user: userdata)
+        self.isPresented = false
     }
 }
 

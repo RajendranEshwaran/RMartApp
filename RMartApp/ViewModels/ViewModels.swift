@@ -17,8 +17,8 @@ class UserProfileDataViewModel {
     var dob: Date?
     var phoneNumber:String
     var emailId:String?
-    
-    init(id: UUID, fname: String?,lname:String?,gender:String?,dob:Date?,phoneNumber:String,emailId:String?) {
+    var pinCode:String?
+    init(id: UUID, fname: String?,lname:String?,gender:String?,dob:Date?,phoneNumber:String,emailId:String?,pinCode:String?) {
         self.id = id
         self.firstName  = fname
         self.lastName = lname
@@ -26,7 +26,7 @@ class UserProfileDataViewModel {
         self.dob = dob
         self.phoneNumber = phoneNumber
         self.emailId = emailId
-        
+        self.pinCode = pinCode
     }
     
     init(userProfileData: UserDataEntity) {
@@ -37,5 +37,6 @@ class UserProfileDataViewModel {
         self.dob = userProfileData.dob ?? Date()
         self.phoneNumber = userProfileData.phoneNumber ?? ""
         self.emailId = userProfileData.emailId ?? ""
+        self.pinCode = userProfileData.pinCode ?? ""
     }
 }

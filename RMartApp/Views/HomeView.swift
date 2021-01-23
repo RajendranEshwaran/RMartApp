@@ -12,11 +12,14 @@ struct HomeView: View {
     @State private var searchText:String = ""
     @State var isDrawerOpen: Bool = false
     @State var isCartOpen: Bool = false
-    //@State var index = "Home"
     @EnvironmentObject var setting: Settings
     @State private var phoneNumber:String = ""
     
     @ObservedObject var userVM = UserDataListViewModel()
+    @ObservedObject var userSettings = UserSettings()
+    
+    @State var index = "Home"
+    @State var show = false
     var body: some View {
         
         let drag = DragGesture()
@@ -31,9 +34,7 @@ struct HomeView: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-                    MainView().onAppear(){//readPhoneNumber()
-                        refreshData()
-                    }
+                    MainView()
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .offset(x: setting.showMenu ? geometry.size.width/2 : 0)
                         .disabled(setting.showMenu ? true : false)
@@ -48,18 +49,24 @@ struct HomeView: View {
                         }
                     }
                    
+                }.onAppear(){
+                    getUserLogin()
                 }
                 .gesture(drag)
             }
             .navigationBarTitle("", displayMode: .inline)
             
-            .navigationBarItems(leading: HStack{Button(action: {
+            .navigationBarItems(leading: HStack{
+//                Button(action: {}, label: {Image(systemName: "chevron.backward")})
+//                Spacer(minLength: 30)
+                Button(action: {
                 withAnimation {
-                    setting.showMenu.toggle()
+                    setting.showMenu = (setting.showMenu == false ? true:false)
                 }
             }) {
                 Image(systemName: "line.horizontal.3")
             }
+            
             Spacer(minLength: 140)
             Text("RMart").bold().foregroundColor(.white)
             },trailing: HStack{
@@ -73,34 +80,36 @@ struct HomeView: View {
                     self.isCartOpen.toggle()
                 }) {
                     Image(systemName: "cart.fill")
-                    
                 }
                 ZStack{
                     Circle().fill(Color.red).frame(width:15,height: 15)
                         .offset(x: -10.0, y: -10.0)
-                    Text("0").font(.system(size: 10)) .frame(width:15,height: 15).offset(x: -10.0, y: -10.0)
+                    Text("\(setting.selectedProductCount)").font(.system(size: 10)) .frame(width:15,height: 15).offset(x: -10.0, y: -10.0)
                 }
             }).foregroundColor(.white)
             
             
         }
     }
-    func refreshData() {
-        self.userVM.fetchAllUserProfile()
-        print("\(self.userVM.userProfile.count)")
-        if(self.userVM.userProfile.count > 0)
+    func getUserLogin() {
+   
+        let username = userSettings.getUserPhoneNumber()
+        if(!username.isEmpty)
         {
             setting.isSigned = true
+            setting.showLocation = true
+            userVM.fetchUserProfileWithPhonenumber(phoneNumber: username)
+            for user in userVM.userProfile
+            {
+                setting.userName = user.firstName ?? ""
+                setting.pinCode = user.pinCode ?? ""
+                print("\(setting.pinCode)")
+            }
+            
         }
+        
     }
-    func readPhoneNumber()
-    {
-//        print(loginDetails[0].phoneNumber ?? "")
-//        if(!(loginDetails[0].phoneNumber?.isEmpty ?? true))
-//        {
-//            setting.isSigned = true
-//        }
-    }
+ 
 }
    
 struct HomeView_Previews: PreviewProvider {
@@ -114,19 +123,20 @@ struct HomeView_Previews: PreviewProvider {
 struct MainView: View {
     @EnvironmentObject var setting: Settings
     @State var selection: Int? = nil
+    
     var body: some View {
-       
         VStack{
             Group{
-                HomeContentView()
+                    HomeContentView()
+                
                 Group{
                     if(!setting.showLocation)
                     {
-                        withAnimation(.easeIn){
+                        withAnimation(.linear(duration: 2.0)){
                             LocationPopupView()
                         }
                     }
-                    if(setting.showSign)
+                    else if(setting.showSign)
                     {
                         if(setting.isSigned )
                         {
@@ -139,7 +149,7 @@ struct MainView: View {
                             }
                         }
                     }
-                    if(setting.showMyAccount)
+                    else if(setting.showMyAccount)
                     {
                         if(setting.isSigned)
                         {
@@ -152,19 +162,19 @@ struct MainView: View {
                             }
                         }
                     }
-                    if(setting.showWallet)
+                    else if(setting.showWallet)
                     {
                         NavigationLink(destination: MyWalletView(), isActive: $setting.showWallet) {
                         }
                     }
-                    if(setting.showAllOffers)
+                    else if(setting.showAllOffers)
                     {
                         NavigationLink(destination:AllOffersView(),isActive:$setting.showAllOffers)
                         {
                             
                         }
                     }
-                    if(setting.showCustomerService)
+                    else if(setting.showCustomerService)
                     {
                         NavigationLink(destination:CustomerServiceView(),isActive:$setting.showCustomerService)
                         {
@@ -172,7 +182,7 @@ struct MainView: View {
                         }
                     }
                     
-                    if(setting.showGuide)
+                    else if(setting.showGuide)
                     {
                         NavigationLink(destination:GuideView(),isActive:$setting.showGuide)
                         {
@@ -180,7 +190,7 @@ struct MainView: View {
                         }
                     }
                     
-                    if(setting.showMyOrders)
+                    else if(setting.showMyOrders)
                     {
                         NavigationLink(destination:MyOrdersView(isOrderHistoryShown: .constant(false)),isActive:$setting.showMyOrders)
                         {
@@ -188,7 +198,7 @@ struct MainView: View {
                         }
                     }
                     
-                    if(setting.showMySubscription)
+                    else if(setting.showMySubscription)
                     {
                         NavigationLink(destination:MySubscriptionView(),isActive:$setting.showMySubscription)
                         {
@@ -196,7 +206,7 @@ struct MainView: View {
                         }
                     }
                     
-                    if(setting.showShopCategory)
+                    else if(setting.showShopCategory)
                     {
                         NavigationLink(destination:ShopCategoryView(),isActive:$setting.showShopCategory)
                         {
@@ -205,13 +215,14 @@ struct MainView: View {
                     }
                 }
             }
-        }
-        .onAppear(){
+        }.onAppear(){
             resetToggle()
         }
+        
     }
     func resetToggle()
     {
+        setting.index = 0
         setting.homeToggle = true
         setting.showMenu = false
         setting.showSign = false
@@ -222,10 +233,16 @@ struct MainView: View {
         setting.showMyOrders = false
         setting.showMySubscription = false
         setting.showShopCategory = false
-        setting.showLocation = true
         setting.showSearchWindow = false
         setting.showMyAccount = false
+        setting.showProductCat = false
+        setting.showTopDealListView = false
+        if(setting.showLocation)
+        {
+            setting.showLocation = true
+        }
     }
+    
 }
 
 struct LocationPopupView: View
@@ -255,7 +272,10 @@ struct LocationPopupView: View
                 Spacer(minLength: 0)
             }
             VStack{
-            Button(action: {}, label: {
+            Button(action: {
+                setting.showLocation = true
+                setting.showSign = true
+            }, label: {
                 Text("Sign in to see Your Addresses").bold().frame(width: UIScreen.main.bounds.width - 50, height: UIScreen.main.bounds.height/20).foregroundColor(.white)
             }).background(Color("blueTheme")).overlay(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 1.0).foregroundColor(Color.white))
                
@@ -274,7 +294,11 @@ struct LocationPopupView: View
                 Spacer(minLength:50)
                
             }
-
+//            if(setting.isSigned)
+//            {
+//                NavigationLink(destination: SignInView(), isActive: $setting.showSign) {
+//                }
+//            }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3).background(Color("blueTheme").opacity(1.0))
     }
    

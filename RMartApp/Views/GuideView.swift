@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GuideView: View {
-    @State private var pincode:String = "19355"
     var body: some View {
         //Mark:- Header panel and searchbar
        // HeaderSearchDummyView()

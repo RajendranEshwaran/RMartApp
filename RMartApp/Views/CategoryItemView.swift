@@ -10,7 +10,6 @@ import SwiftUI
 struct CategoryItemView: View {
     @EnvironmentObject var setting:Settings
     @Environment(\.presentationMode) var presentationMode
-    @State private var pincode:String = "19355"
     @State private var filterProductCount:Int = 5
     var body: some View {
         VStack{

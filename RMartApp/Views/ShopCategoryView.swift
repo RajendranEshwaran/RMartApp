@@ -8,13 +8,9 @@
 import SwiftUI
 
 struct ShopCategoryView: View {
-    @State private var pincode:String = "19355"
-   
     var body: some View {
-        
             VStack
             {
-
            // HeaderSearchDummyView()
            //     Spacer(minLength:0)
             ScrollView(.vertical, showsIndicators: false, content: {

@@ -25,8 +25,13 @@ class Settings: ObservableObject{
     @Published var showLocation:Bool = false
     @Published var showSearchWindow:Bool = false
     @Published var showMyAccount:Bool = false
+    @Published var showProfileEdit:Bool = false
+    @Published var showProductCat:Bool = false
+    @Published var showTopDealListView:Bool = false
+    @Published var index:Int = 0
     @Published var categoryArray: [String] = ["All Categories","Bevarages","Grocery","Dairy & Backery","Veggies","Fruits","Meat","Clean Ups","Stationaries","Personal Care","Fashion","Jewlerry","Kids Wear","Womens Wear","Mens Wear","Pets"]
     @Published var categoryIconsArray: [String] = ["category3","beverages","grocery","dairy-products","vegetable","fruits-1","meat","cleaning","stationary","personal-care","fashion","jewelry","baby-clothes","woman-clothes","men-fashion","pets"]
+    
     @Published var isSigned : Bool = false
     
     @Published var firstName : String = ""
@@ -35,6 +40,11 @@ class Settings: ObservableObject{
     @Published var dob : Date?
     @Published var phoneNumber : String = ""
     @Published var emailId : String?
+    @Published var pinCode : String = ""
+    @Published var userName : String = "UserName"
+    
+    // MARK:- Card product details
+    @Published var selectedProductCount:Int = 0
     
 }
 

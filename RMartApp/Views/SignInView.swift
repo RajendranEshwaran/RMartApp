@@ -20,11 +20,12 @@ struct SignInView: View {
     @State private var errorDesc = Text("")
     @State private var phoneField: PhoneNumberTextFieldView?
     @EnvironmentObject var setting: Settings
+    @ObservedObject var userSettings = UserSettings()
     let phoneNumberKit = PhoneNumberKit()
     
     //@FetchRequest(entity: UserDataEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \UserDataEntity.phoneNumber, ascending: true)]) var loginDetails: FetchedResults<UserDataEntity>
 
-    private let userViewModel = AddNewUserProfileDataViewModel()
+    private let vmManager = ViewModelManager()
     var body: some View {
 
         VStack{
@@ -78,7 +79,7 @@ struct SignInView: View {
                             let validatedPhoneNumber = try self.phoneNumberKit.parse(self.phoneNumber)
                             print("Validated Number: \(validatedPhoneNumber)")
                             // Integrate with your login/registration system here...
-                            
+                            self.phoneNumber = String(validatedPhoneNumber.nationalNumber)
                             isOtp = true
                         }
                         catch {
@@ -132,20 +133,9 @@ struct SignInView: View {
             setting.phoneNumber = self.phoneNumber
             setting.showSign = false
             setting.isSigned.toggle()
-            let userdata = UserProfileDataViewModel(id: UUID(), fname: setting.firstName, lname: setting.lastName, gender: setting.gender, dob: setting.dob, phoneNumber: setting.phoneNumber, emailId: setting.emailId)
-            userViewModel.saveUserProfile(user: userdata)
-           /* do {
-                let userdata = UserDataEntity(context: self.viewContext)
-                userdata.phoneNumber = setting.phoneNumber
-                userdata.firstName = setting.firstName
-                userdata.lastName = setting.lastName
-                userdata.emailId = setting.emailId ?? setting.phoneNumber + "@rmart.com"
-                userdata.dob = setting.dob
-                try self.viewContext.save()
-                print("Data Saved")
-            } catch {
-                print("whoops \(error.localizedDescription)")
-            }*/
+            let userdata = UserProfileDataViewModel(id: UUID(), fname: setting.firstName, lname: setting.lastName, gender: setting.gender, dob: setting.dob, phoneNumber: setting.phoneNumber, emailId: setting.emailId, pinCode: setting.pinCode)
+            vmManager.saveUserProfile(user: userdata)
+            userSettings.phonenumber = self.phoneNumber.description
             presentation.wrappedValue.dismiss()
         }
     }

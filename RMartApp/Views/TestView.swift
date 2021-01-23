@@ -12,8 +12,9 @@ struct TestView: View {
         //LocationPopupView1()
         //test1()
        // AddressAddFromMapViewTest()
-        editviewTest2()
-        
+       // editviewTest2()
+       // GridView()
+        GridView1()
     }
 }
 struct test1:View {
@@ -219,5 +220,53 @@ struct editviewTest2 :View
             
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
         
+    }
+}
+
+struct GridView : View{
+    var body: some View
+    {
+        VStack{
+            HStack{
+                ForEach(0..<3){idx in
+                ZStack{
+                Rectangle().fill(Color("blueTheme")).frame(width: 100, height: 120).clipShape(RoundedRectangle(cornerRadius: 10))
+                Spacer()
+                    Image(DemoDatas.topCategoryThumb[1])
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 60, height: 70)
+                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                }
+                }
+            }
+        }
+        
+    }
+}
+struct GridView1 : View{
+    //let data = DemoDatas.map {"item \($0)"}
+    let layout = [GridItem(.adaptive(minimum: 120))]
+    var body: some View
+    {
+        ScrollView{
+            LazyVGrid(columns:layout,spacing : 20)
+            {
+                ForEach(0..<DemoDatas.topCategoryName.count){item in
+                    //Text("\(item),\(DemoDatas.topCategoryName[item])")
+                    ZStack{
+                    Rectangle().fill(Color("blueTheme")).frame(width: 110, height: 120).clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                        Image(DemoDatas.topCategoryThumb[1])
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 60, height: 70)
+                            .clipShape(RoundedRectangle(cornerRadius: 5.0)).padding(.bottom,30)
+                        Spacer()
+                        Text("\(item),\(DemoDatas.topCategoryName[item])").padding(.top,60).font(.system(size: 12))
+                    }
+                }
+            }
+        }
     }
 }

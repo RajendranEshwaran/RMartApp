@@ -23,7 +23,7 @@ extension UserDataEntity {
     @NSManaged public var lastName: String?
     @NSManaged public var phoneNumber: String?
     @NSManaged public var id: UUID?
-
+    @NSManaged public var pinCode : String?
 }
 
 extension UserDataEntity : Identifiable {
