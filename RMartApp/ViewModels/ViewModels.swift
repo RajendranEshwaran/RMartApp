@@ -40,3 +40,51 @@ class UserProfileDataViewModel {
         self.pinCode = userProfileData.pinCode ?? ""
     }
 }
+
+
+class UserCartDataViewModel {
+    var id: String
+    var itemCount: Int64
+    var phoneNumber:String
+    
+    init(id: String, iCount: Int64,phoneNumber:String) {
+        self.id = id
+        self.itemCount  = iCount
+        self.phoneNumber = phoneNumber
+    }
+    
+    init(userCartData: CartEntity) {
+        self.id = userCartData.id ?? ""
+        self.itemCount = userCartData.itemCount
+        self.phoneNumber = userCartData.phoneNumber ?? ""
+    }
+}
+
+class SingleProductDataViewModel {
+    var id: UUID
+    var productCount: Int64
+    var productName:String?
+    var productAPrice:String?
+    var productCPrice:String?
+    var productSPrice:String?
+    var phoneNumber:String?
+    init(id: UUID, productCount: Int64,phoneNumber:String,productAPrice:String?,productCPrice:String?,productSPrice:String?,productName:String?) {
+        self.id = id
+        self.productCount = productCount
+        self.productName = productName
+        self.productAPrice = productAPrice
+        self.productCPrice = productCPrice
+        self.productSPrice = productSPrice
+        self.phoneNumber = phoneNumber
+    }
+    
+    init(userCartData: CartProductEntity) {
+        self.id = userCartData.id
+        self.productCount = userCartData.productCount
+        self.productName = userCartData.productName ?? ""
+        self.productAPrice = userCartData.productAPrice ?? ""
+        self.productSPrice = userCartData.productSPrice ?? ""
+        self.productCPrice = userCartData.productCPrice ?? ""
+        self.phoneNumber = userCartData.phoneNumber ?? ""
+    }
+}

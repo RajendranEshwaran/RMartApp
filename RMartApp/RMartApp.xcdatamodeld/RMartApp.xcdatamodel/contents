@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H15" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CartEntity" representedClassName="CartEntity" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="itemCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CartProductEntity" representedClassName="CartProductEntity" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
         <attribute name="productAPrice" optional="YES" attributeType="String"/>
         <attribute name="productCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="productCPrice" optional="YES" attributeType="String"/>
@@ -27,10 +29,10 @@
         <attribute name="pinCode" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="CartProductEntity" positionX="-45" positionY="54" width="128" height="148"/>
         <element name="DeliveryAddress" positionX="-54" positionY="36" width="128" height="43"/>
         <element name="LoginEntity" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="UserDataEntity" positionX="-54" positionY="-9" width="128" height="163"/>
-        <element name="CartEntity" positionX="-54" positionY="45" width="128" height="73"/>
-        <element name="CartProductEntity" positionX="-45" positionY="54" width="128" height="133"/>
+        <element name="CartEntity" positionX="-54" positionY="72" width="128" height="88"/>
     </elements>
 </model>

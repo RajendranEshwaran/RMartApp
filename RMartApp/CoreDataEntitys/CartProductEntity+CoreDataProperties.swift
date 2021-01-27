@@ -21,7 +21,7 @@ extension CartProductEntity {
     @NSManaged public var productSPrice: String?
     @NSManaged public var productCPrice: String?
     @NSManaged public var productCount: Int64
-
+    @NSManaged public var phoneNumber: String?
 }
 
 extension CartProductEntity : Identifiable {

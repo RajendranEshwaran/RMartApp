@@ -16,6 +16,7 @@ struct ProfileView: View {
     @State private var isAddressShown:Bool = false
     @State private var isPaymentShown :Bool = false
     @State private var isOrderHistoryShown :Bool = false
+    @State private var isProfileEdit:Bool = false
     
     @ObservedObject var userVM = UserDataListViewModel()
     private let vmManager = ViewModelManager()
@@ -43,7 +44,7 @@ struct ProfileView: View {
                             Spacer(minLength: 20)
                             Button(action: {
                                 withAnimation{
-                                    setting.showProfileEdit.toggle()
+                                    self.isProfileEdit.toggle()
                                     //setting.showMyAccount = false
                                 }
                             }, label: {
@@ -62,7 +63,8 @@ struct ProfileView: View {
                         HStack {
                             Button(action: {
                                 withAnimation{
-                                    self.isPaymentShown.toggle()
+                                   self.isPaymentShown.toggle()
+                                    //setting.showProfileEdit.toggle()
                                 }
                             }, label: {
                                 Text("Payment Methods").frame(width: 170, height: 40).overlay(
@@ -111,15 +113,7 @@ struct ProfileView: View {
                 })//.frame(height:UIScreen.main.bounds.height).padding(.bottom,10)
                 //.frame(height:UIScreen.main.bounds.height).padding(.top,0)//.background(Color.black)
                 
-                if(setting.showProfileEdit)
-                {
-                        ZStack{
-                            Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
-                            VStack{
-                                EditView(isPresented: self.$isPresented, vmManager:vmManager, userProfileLVM: userVM).transition(.slide)
-                            }
-                        }
-                }
+                
             }.onDisappear()
             {
                 self.isPresented = false
@@ -138,7 +132,7 @@ struct ProfileView: View {
                     Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
                     
                     PaymentView(isPaymentShown: self.$isPaymentShown).transition(.slide)
-                    
+                
                 }
             }
             if(self.isOrderHistoryShown)
@@ -146,8 +140,17 @@ struct ProfileView: View {
                 ZStack{
                     Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
                     
-                    MyOrdersView(isOrderHistoryShown: self.$isOrderHistoryShown).transition(.slide)
+                    MyOrdersView(isOrderHistoryShown: .constant(true)).transition(.slide)
                     
+                }
+            }
+       
+            if(self.isProfileEdit)
+            {
+                ZStack{
+                    Color.white.opacity(1.0).edgesIgnoringSafeArea(.all)
+ 
+                    EditView(isProfileEdit: self.$isProfileEdit, vmManager:vmManager, userProfileLVM: userVM).transition(.slide)
                 }
             }
         }
@@ -167,7 +170,7 @@ struct EditView: View {
         formatter.dateStyle = .long
         return formatter
     }
-    @Binding var isPresented :Bool
+    @Binding var isProfileEdit :Bool
     var vmManager: ViewModelManager
     var userProfileLVM: UserDataListViewModel
     @EnvironmentObject var setting:Settings
@@ -187,13 +190,12 @@ struct EditView: View {
     
     var body: some View
     {
-        ScrollView(.vertical, showsIndicators: false, content: {
+        
             VStack{
-                
+                ScrollView(.vertical, showsIndicators: false, content: {
                 HStack{
                     Button(action: {
-                        self.isPresented = false
-                        setting.showProfileEdit = false
+                        self.isProfileEdit = false
                     }, label: {
                         Image(systemName: "xmark")
                     })
@@ -203,7 +205,7 @@ struct EditView: View {
                 }
                 Divider()
                 
-                /*VStack{
+                VStack{
                     ForEach(self.userProfileLVM.userProfile.indices , id:\.self) {idx  in
                         TextField("Phone Number", text: $phoneNumber).frame(width: UIScreen.main.bounds.width - 30, height: 40).textFieldStyle(RoundedBorderTextFieldStyle())
                         
@@ -253,13 +255,14 @@ struct EditView: View {
                     }
                     
                 }
-                Spacer()*/
+                Spacer()
+             
+        }).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
                 
             }//.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
-        }).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
         .onAppear(){
-            setting.showProfileEdit = false
-            /*setting.phoneNumber = userSetting.getUserPhoneNumber()
+            //setting.showProfileEdit = false
+            //setting.phoneNumber = userSetting.getUserPhoneNumber()
             if(!setting.phoneNumber.isEmpty)
             {
                 userProfileLVM.fetchUserProfileWithPhonenumber(phoneNumber: setting.phoneNumber)
@@ -274,14 +277,14 @@ struct EditView: View {
                     self.birthDate = user.dob ?? Date()
                     self.pincode = user.pinCode ?? ""
                 }
-            }*/
+            }
         }
     }
     func updateUserProfile()
     {
         let userdata = UserProfileDataViewModel(id: UUID(), fname: self.fName, lname: self.lName, gender: self.seletedGender, dob: self.birthDate, phoneNumber: self.phoneNumber, emailId: self.emailid,pinCode: self.pincode)
         vmManager.updateUserProfileData(user: userdata)
-        self.isPresented = false
+        self.isProfileEdit = false
     }
 }
 

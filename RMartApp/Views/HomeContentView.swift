@@ -126,6 +126,7 @@ struct TopDealsView: View{
     @State private var timer = Timer.publish(every:3,on:.main,in:.common).autoconnect()
     @State private var currentIndex = 0
     @EnvironmentObject var setting:Settings
+    @ObservedObject var userVM = UserDataListViewModel()
     var body: some View
     {
         Spacer(minLength: 100)

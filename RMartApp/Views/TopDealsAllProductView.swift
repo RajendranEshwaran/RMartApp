@@ -9,6 +9,10 @@ import SwiftUI
 
 struct TopDealsAllProductView: View {
     @EnvironmentObject var setting:Settings
+    private let vmManager = ViewModelManager()
+    @ObservedObject var userVM = UserDataListViewModel()
+    
+    @State private var count: Int64 = 0
     var body: some View {
         VStack{
             ScrollView(.vertical, showsIndicators: false, content: {
@@ -36,7 +40,7 @@ struct TopDealsAllProductView: View {
                                 }
                                 Text("Save as ₹\(TopDeals.topDeals[product].productSPrice ?? "")").bold().font(.system(size: 12)).foregroundColor(.green).frame(maxWidth:.infinity,alignment: .leading).padding(.leading,10)
                                 
-                                if(TopDeals.topDeals[product].productName != "")
+                                /*if(TopDeals.topDeals[product].productName != "")
                                 {
                                     HStack{
                                         Button(action: { }, label: {
@@ -59,13 +63,15 @@ struct TopDealsAllProductView: View {
                                     
                                 }
                                 else
-                                {
+                                {*/
                                     Button(action: {
+                                        count = 1
                                         setting.selectedProductCount = setting.selectedProductCount + 1
+                                        
                                     }, label: {
                                         Text("ADD     +").bold().font(.system(size: 10)).foregroundColor(.white).frame(width: 140,height:20)
                                     }).frame(width: 100,height:20,alignment:.leading).background(Color("blueTheme")).padding()
-                                }
+                                //}
                             }
                         }
                         Divider()
@@ -75,6 +81,26 @@ struct TopDealsAllProductView: View {
                 }.background(Color.white)
             }).background(Color.gray.opacity(0.2)).frame(height:UIScreen.main.bounds.height).padding(.top,110)
             .edgesIgnoringSafeArea(.all)
+        }.onAppear(){
+            
+        }
+    }
+    func fetchSingleProductDetails()
+    {
+        if(!setting.phoneNumber.isEmpty)
+        {
+            userVM.fetchSingleProductCartData(phoneNumber: setting.phoneNumber)
+            for user in userVM.proCart
+            {
+                print(user.phoneNumber)
+//                self.phoneNumber = user.phoneNumber
+//                self.fName = user.firstName ?? ""
+//                self.lName = user.lastName ?? ""
+//                self.emailid = user.emailId ?? ""
+//                self.seletedGender = user.gender ?? ""
+//                self.birthDate = user.dob ?? Date()
+//                self.pincode = user.pinCode ?? ""
+            }
         }
     }
 }

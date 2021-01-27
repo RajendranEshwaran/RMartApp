@@ -2,7 +2,7 @@
 //  CartEntity+CoreDataProperties.swift
 //  RMartApp
 //
-//  Created by gomathi saminathan on 1/23/21.
+//  Created by RMart on 1/25/21.
 //
 //
 
@@ -16,8 +16,9 @@ extension CartEntity {
         return NSFetchRequest<CartEntity>(entityName: "CartEntity")
     }
 
+    @NSManaged public var id: String?
+    @NSManaged public var phoneNumber: String?
     @NSManaged public var itemCount: Int64
-    @NSManaged public var id: UUID
 
 }
 

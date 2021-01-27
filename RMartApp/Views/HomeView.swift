@@ -71,7 +71,7 @@ struct HomeView: View {
             Text("RMart").bold().foregroundColor(.white)
             },trailing: HStack{
                 Button(action: {
-                    //self.isDrawerOpen.toggle()
+                    setting.showSign.toggle()
                 }) {
                     Image(systemName: "person.crop.circle")
                 }
@@ -94,6 +94,7 @@ struct HomeView: View {
     func getUserLogin() {
    
         let username = userSettings.getUserPhoneNumber()
+        setting.phoneNumber = username
         if(!username.isEmpty)
         {
             setting.isSigned = true
@@ -108,8 +109,18 @@ struct HomeView: View {
             
         }
         
+        if(!username.isEmpty)
+        {
+            userVM.fetchUserCartItemCount(phoneNumber: username)
+            for user in userVM.userCart
+            {
+                setting.selectedProductCount = Int(Int64(user.itemCount))
+            }
+        }
+        
     }
  
+    
 }
    
 struct HomeView_Previews: PreviewProvider {
