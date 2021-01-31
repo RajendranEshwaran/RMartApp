@@ -14,7 +14,8 @@ struct TestView: View {
        // AddressAddFromMapViewTest()
        // editviewTest2()
        // GridView()
-        GridView1()
+      //  GridView1()
+        imageBanner()
     }
 }
 struct test1:View {
@@ -267,6 +268,26 @@ struct GridView1 : View{
                     }
                 }
             }
+        }
+    }
+}
+
+struct imageBanner:View{
+    var body: some View
+    {
+        //Image("panel1").resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 50)
+        VStack{
+        Text("SKIN CREAM & LOTIONS").bold()
+            .font(.system(size: 12))
+            .frame(width: 160, height: 30, alignment: .center)
+            .background(Color.green)
+            .foregroundColor(Color.white)
+            .cornerRadius(5)
+        Text("UP TO 50% OFF").bold()
+            .font(.system(size: 15))
+            .frame(width: 160, height: 30, alignment: .center)
+            .background(Color.blue)
+            .foregroundColor(Color.white)
         }
     }
 }

@@ -221,14 +221,31 @@ struct ShopGroceryView: View{
         VStack{ // shop from catogories gird init
             LazyVGrid(columns:layout,spacing : 10)
             {
-                ForEach(0..<DemoDatas.topCategoryName.count-3){item in
+                ForEach(0..<ShopGrocery.shopGrocery.count-2){item in
                     ZStack{
                     Rectangle().fill(Color("blueTheme")).frame(width: 170, height: 150).clipShape(RoundedRectangle(cornerRadius: 10))
 
-                        Image("test2")
+                        Image(ShopGrocery.shopGrocery[item].productImage ?? "")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 165, height: 165)
+                            .frame(width: 100, height: 100)
+                            .padding(.bottom,50)
+                            .onTapGesture { self.gotoShopGroceryItemAt(item: item) }
+                        VStack{
+                            Spacer()
+                            Text("\(ShopGrocery.shopGrocery[item].productName ?? "")").bold()
+                            .font(.system(size: 12))
+                            .frame(width: 170, height: 30, alignment: .center)
+                                .background(Color.purple)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(5)
+                        Text("UP TO 30% OFF").bold()
+                            .font(.system(size: 15))
+                            .frame(width: 170, height: 30, alignment: .center)
+                            .background(Color.secondary)
+                            .foregroundColor(Color.white)
+                           
+                        }
                             //.padding(.bottom,30)
 //                        //Text("\(item),\(DemoDatas.topCategoryName[item])").padding(.top,60).font(.system(size: 12))
                     }
@@ -244,6 +261,10 @@ struct ShopGroceryView: View{
             TopDealsForYouView()
             Spacer(minLength: 100)
         }
+    }
+    func gotoShopGroceryItemAt(item:Int)
+    {
+        print("shop grocery index \(String(describing: item))")
     }
 }
 
@@ -297,10 +318,27 @@ struct TopDealsForYouView: View{
                     ZStack{
                     Rectangle().fill(Color("blueTheme")).frame(width: 170, height: 150).clipShape(RoundedRectangle(cornerRadius: 10))
 
-                        Image("test2")
+                        Image(TopDealsGallery.topdealgallery[item].productImage ?? "")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 165, height: 165)
+                            .frame(width: 100, height: 100)
+                            .padding(.bottom,50)
+                            .onTapGesture { self.gotoTopDealsItemAt(item: item) }
+                        VStack{
+                            Spacer()
+                            Text("\(TopDealsGallery.topdealgallery[item].productName ?? "")").bold()
+                            .font(.system(size: 12))
+                            .frame(width: 170, height: 30, alignment: .center)
+                                .background(Color.orange)
+                            .foregroundColor(Color.black)
+                            .cornerRadius(5)
+                        Text("UP TO 5% OFF").bold()
+                            .font(.system(size: 15))
+                            .frame(width: 170, height: 30, alignment: .center)
+                            .background(Color.secondary)
+                            .foregroundColor(Color.white)
+                           
+                        }
                             //.padding(.bottom,30)
 //                        //Text("\(item),\(DemoDatas.topCategoryName[item])").padding(.top,60).font(.system(size: 12))
                     }
@@ -316,6 +354,10 @@ struct TopDealsForYouView: View{
             BestDealsForYouView()
             Spacer(minLength: 100)
         }
+    }
+    func gotoTopDealsItemAt(item:Int)
+    {
+        print("topdeals index \(item)")
     }
 }
 
@@ -363,16 +405,33 @@ struct BestDealsForYouView: View{
 //                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
 //
 //            }
-            LazyVGrid(columns:layout,spacing : 10)
+            LazyVGrid(columns:layout,spacing : 20)
             {
-                ForEach(0..<DemoDatas.topCategoryName.count-3){item in
+                ForEach(0..<BestDeals.bestDeals.count-2){item in
                     ZStack{
                     Rectangle().fill(Color("blueTheme")).frame(width: 170, height: 150).clipShape(RoundedRectangle(cornerRadius: 10))
 
-                        Image("test2")
+                        Image(BestDeals.bestDeals[item].productImage ?? "")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 165, height: 165)
+                            .frame(width: 100, height: 100)
+                            .padding(.bottom,50)
+                            .onTapGesture { self.gotoBestDealsItemAt(item: item) }
+                        VStack{
+                            Spacer()
+                            Text("\(BestDeals.bestDeals[item].productName ?? "")").bold()
+                            .font(.system(size: 12))
+                            .frame(width: 170, height: 30, alignment: .center)
+                                .background(Color.yellow)
+                            .foregroundColor(Color.black)
+                            .cornerRadius(5)
+                        Text("UP TO 50% OFF").bold()
+                            .font(.system(size: 15))
+                            .frame(width: 170, height: 30, alignment: .center)
+                            .background(Color.secondary)
+                            .foregroundColor(Color.white)
+                           
+                        }
                             //.padding(.bottom,30)
 //                        //Text("\(item),\(DemoDatas.topCategoryName[item])").padding(.top,60).font(.system(size: 12))
                     }
@@ -388,6 +447,10 @@ struct BestDealsForYouView: View{
             ExclusiveDealsForYouView()
             Spacer(minLength: 100)
         }
+    }
+    func gotoBestDealsItemAt(item:Int)
+    {
+        print("best deals index \(item)")
     }
 }
 
@@ -434,16 +497,33 @@ struct ExclusiveDealsForYouView: View{
 //                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
 //
 //            }
-            LazyVGrid(columns:layout,spacing : 10)
+            LazyVGrid(columns:layout,spacing : 20)
             {
-                ForEach(0..<DemoDatas.topCategoryName.count-3){item in
+                ForEach(0..<ExclusiveDeals.exclusiveDeals.count-2){item in
                     ZStack{
                     Rectangle().fill(Color("blueTheme")).frame(width: 170, height: 150).clipShape(RoundedRectangle(cornerRadius: 10))
 
-                        Image("test2")
+                        Image(ExclusiveDeals.exclusiveDeals[item].productImage ?? "")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 165, height: 165)
+                            .frame(width: 100, height: 100)
+                            .padding(.bottom,50)
+                            .onTapGesture { self.gotoExclusiveDealsItemAt(item: item) }
+                        VStack{
+                            Spacer()
+                            Text("\(ExclusiveDeals.exclusiveDeals[item].productName ?? "")").bold()
+                            .font(.system(size: 12))
+                            .frame(width: 170, height: 30, alignment: .center)
+                                .background(Color.green)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(5)
+                        Text("UP TO 20% OFF").bold()
+                            .font(.system(size: 15))
+                            .frame(width: 170, height: 30, alignment: .center)
+                            .background(Color.secondary)
+                            .foregroundColor(Color.white)
+                           
+                        }
                             //.padding(.bottom,30)
 //                        //Text("\(item),\(DemoDatas.topCategoryName[item])").padding(.top,60).font(.system(size: 12))
                     }
@@ -457,7 +537,10 @@ struct ExclusiveDealsForYouView: View{
                 .frame(width: UIScreen.main.bounds.width, height: 100)
             
         }
-        
+    }
+    func gotoExclusiveDealsItemAt(item:Int)
+    {
+        print("Exclusive index \(item)")
     }
 }
 //MARK:-    GRID PANEL CREATE ROW & COLOMN
