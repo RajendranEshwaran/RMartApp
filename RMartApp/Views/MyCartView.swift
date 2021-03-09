@@ -140,12 +140,19 @@ struct MyCartView: View {
             }.frame(width: UIScreen.main.bounds.width, height: 250)
             
             
-        }).frame(height:UIScreen.main.bounds.height - 70)
+        }).frame(height:UIScreen.main.bounds.height - 150)
      
         HStack{
             TabBarIcon(width: UIScreen.main.bounds.width, height: 50)
         }
-       }
+       }.toolbar(content: {
+        ToolbarItem(placement: .principal) {
+                        HStack {
+                            //Image(systemName: "sun.min.fill").foregroundColor(.white)
+                            Text("RMart").font(.headline).foregroundColor(.white)
+                        }
+                    }
+    })
        
     }
     

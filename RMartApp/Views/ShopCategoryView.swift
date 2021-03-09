@@ -36,7 +36,14 @@ struct ShopCategoryView: View {
         }).frame(height:UIScreen.main.bounds.height).background(Color.gray.opacity(0.2)).padding(.top,115)
                 Spacer(minLength:0)
                     .edgesIgnoringSafeArea(.all)
-            }
+            }.toolbar(content: {
+                ToolbarItem(placement: .principal) {
+                                HStack {
+                                    //Image(systemName: "sun.min.fill").foregroundColor(.white)
+                                    Text("RMart").font(.headline).foregroundColor(.white)
+                                }
+                            }
+            })
         
     }
 }

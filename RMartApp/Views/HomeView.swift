@@ -152,6 +152,7 @@ struct MainView: View {
                         if(setting.isSigned )
                         {
                             NavigationLink(destination: ProfileView(), isActive: $setting.showSign) {
+                                
                             }
                         }
                         else

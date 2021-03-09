@@ -537,6 +537,7 @@ struct ExclusiveDealsForYouView: View{
                 .frame(width: UIScreen.main.bounds.width, height: 100)
             
         }
+        BannerLargeView()
     }
     func gotoExclusiveDealsItemAt(item:Int)
     {

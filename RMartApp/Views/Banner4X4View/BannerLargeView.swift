@@ -13,7 +13,7 @@ struct BannerLargeView: View {
     @State private var numberofLargeBanners = 5
     var body: some View {
         VStack{
-            //PampletView()
+            
             TabView(selection:$currentIndex){ // Ad slide 1
             ForEach(0..<numberofLargeBanners){ index in
                 Image("ad1")

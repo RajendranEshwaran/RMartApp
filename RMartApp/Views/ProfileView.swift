@@ -23,6 +23,7 @@ struct ProfileView: View {
     @EnvironmentObject var setting:Settings
     var body: some View {
         ZStack{
+            //Text("RMart").bold().foregroundColor(.black)
             VStack{
 //                HeaderSearchDummyView()
 //                Spacer(minLength:0)
@@ -112,13 +113,21 @@ struct ProfileView: View {
                     
                 })//.frame(height:UIScreen.main.bounds.height).padding(.bottom,10)
                 //.frame(height:UIScreen.main.bounds.height).padding(.top,0)//.background(Color.black)
-                
-                
+               
             }.onDisappear()
             {
                 self.isPresented = false
             }
             
+            .toolbar(content: {
+                ToolbarItem(placement: .principal) {
+                                HStack {
+                                    //Image(systemName: "sun.min.fill").foregroundColor(.white)
+                                    Text("RMart").font(.headline).foregroundColor(.white)
+                                }
+                            }
+            })
+                    
             if(self.isAddressShown)
             {
                 NavigationLink(destination: DeliveryAddressView(), isActive: self.$isAddressShown) {

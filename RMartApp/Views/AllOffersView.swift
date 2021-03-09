@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AllOffersView: View {
     var body: some View {
-        
+        VStack{
         //Mark:- Header panel and searchbar
       //  HeaderSearchDummyView()
       //  Spacer(minLength:0)
@@ -38,6 +38,14 @@ struct AllOffersView: View {
             
         }).frame(height:UIScreen.main.bounds.height).background(Color.green.opacity(0.2)).padding(.top,115)
         .edgesIgnoringSafeArea(.all)
+        }.toolbar(content: {
+            ToolbarItem(placement: .principal) {
+                            HStack {
+                                //Image(systemName: "sun.min.fill").foregroundColor(.white)
+                                Text("RMart").font(.headline).foregroundColor(.white)
+                            }
+                        }
+        })
     }
 }
 
