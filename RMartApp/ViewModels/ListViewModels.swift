@@ -37,7 +37,7 @@ class UserDataListViewModel: ObservableObject {
     {
         self.proCart = DataManager.shared.getCartSingeProductData(phonenumber: phoneNumber).map(SingleProductDataViewModel.init)
     }
-    func fetchSingleProductCartDataAll()
+    func fetchSingleProductCartDataAllFromCoreData()
     {
         self.proCart = DataManager.shared.getCartSingeProductDataAll().map(SingleProductDataViewModel.init)
     }

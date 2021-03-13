@@ -190,7 +190,7 @@ struct TopDealsProductView: View {
     
     func fetchSingleCartDetails()
     {
-        userVM.fetchSingleProductCartDataAll()
+        userVM.fetchSingleProductCartDataAllFromCoreData()
         if(userVM.proCart.count > 0)
         {
             isFirstProduct = true

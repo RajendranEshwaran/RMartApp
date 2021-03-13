@@ -18,6 +18,14 @@
     <entity name="LoginEntity" representedClassName="LoginEntity" syncable="YES">
         <attribute name="phoneNumber" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="OrderHistoryEntity" representedClassName="OrderHistoryEntity" syncable="YES">
+        <attribute name="orderDeliveryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="orderDeliveryMsg" optional="YES" attributeType="String"/>
+        <attribute name="orderItemsCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="orderNumber" optional="YES" attributeType="String"/>
+        <attribute name="orderPlacedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="shipTo" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="UserDataEntity" representedClassName="UserDataEntity" syncable="YES">
         <attribute name="dob" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="emailId" optional="YES" attributeType="String"/>
@@ -29,10 +37,11 @@
         <attribute name="pinCode" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="CartEntity" positionX="-54" positionY="72" width="128" height="88"/>
         <element name="CartProductEntity" positionX="-45" positionY="54" width="128" height="148"/>
         <element name="DeliveryAddress" positionX="-54" positionY="36" width="128" height="43"/>
         <element name="LoginEntity" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="UserDataEntity" positionX="-54" positionY="-9" width="128" height="163"/>
-        <element name="CartEntity" positionX="-54" positionY="72" width="128" height="88"/>
+        <element name="OrderHistoryEntity" positionX="-54" positionY="72" width="128" height="133"/>
     </elements>
 </model>

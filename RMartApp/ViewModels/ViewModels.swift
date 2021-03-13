@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class UserProfileDataViewModel {
+struct UserProfileDataViewModel {
     var id: UUID?
     var firstName: String?
     var lastName: String?
@@ -42,7 +42,7 @@ class UserProfileDataViewModel {
 }
 
 
-class UserCartDataViewModel {
+struct UserCartDataViewModel {
     var id: String
     var itemCount: Int64
     var phoneNumber:String
@@ -60,7 +60,8 @@ class UserCartDataViewModel {
     }
 }
 
-class SingleProductDataViewModel {
+struct SingleProductDataViewModel : Identifiable,Hashable{
+    
     var id: UUID
     var productCount: Int64
     var productName:String?

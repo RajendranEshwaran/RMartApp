@@ -72,6 +72,7 @@ struct MyOrdersView_Previews: PreviewProvider {
 }
 
 struct OrdersView:View {
+    @State private var pincode:String = "19355"
     var body: some View{
         
         VStack{
@@ -80,10 +81,35 @@ struct OrdersView:View {
                 icon: { Image(systemName: "line.horizontal.3.decrease.circle") })
             Spacer(minLength: 0)
             List{
-            ForEach(0..<20){id in
-               Text("My orders")
-            }
-            
+                ForEach(0..<20){id in
+                    Group{
+                        VStack{
+                            HStack{
+                                Text("ORDER PLACED").bold().font(.system(size: 12))
+                                Spacer()
+                                Text("SHIPPED TO").bold().font(.system(size: 12))
+                                Spacer()
+                                Text("ORDER #NO").bold().font(.system(size: 12))
+                            }
+                            HStack{
+                                Text("March 11,2021").font(.system(size: 12))
+                                Spacer()
+                                Text("xxx-xxx-xxx").font(.system(size: 12))
+                                Spacer()
+                                Text("123-343-3343").font(.system(size: 12))
+                            }
+//                            Form{
+//                                Text("Delivered \("March 12,2021")").bold().font(.system(size: 15))
+//                                HStack
+//                                {
+//                                    Image(systemName: "folder").resizable().aspectRatio(contentMode: .fit).frame(width: 100, height: 100, alignment: .center)
+//                                }
+//                            }.frame(width: UIScreen.main.bounds.size.width, height: 200,alignment: .leading)
+                           
+                        }
+                    }
+                }
+                
             }
         }
         .background(Color.white)
